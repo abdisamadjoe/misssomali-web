@@ -71,16 +71,19 @@ export default function Hero() {
               </p>
             </div>
 
+            {/* Center Column Spacer: reserves Columns 5-8 on desktop, hidden on mobile */}
+            <div className="hidden lg:block lg:col-span-4 pointer-events-none" />
+
             {/* Center Column: Portrait Image (Columns 5-8 on desktop, 12 on mobile) */}
-            <div className="col-span-12 lg:col-span-4 flex justify-center items-center py-6 lg:py-0 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-              <div className="relative w-full max-w-[280px] sm:max-w-[310px] aspect-[3/4]">
+            <div className="col-span-12 lg:col-span-4 flex justify-center items-end py-6 lg:py-0 lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2 lg:h-[82vh] xl:h-[90vh] lg:w-[32%] max-w-[480px] z-10 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+              <div className="relative w-full h-[45vh] sm:h-[50vh] lg:h-full max-w-[320px] sm:max-w-[380px] lg:max-w-none mx-auto">
                 <Image
                   src="/images/fatima.png"
                   alt="Fatima - Contestant"
                   fill
                   priority
                   sizes="(max-w-768px) 100vw, 33vw"
-                  className="object-cover object-center hover:scale-103 transition-transform duration-500"
+                  className="object-contain object-bottom hover:scale-103 transition-transform duration-500"
                 />
               </div>
             </div>
