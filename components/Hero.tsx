@@ -88,31 +88,8 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Right Column: Description and CTAs (Columns 9-12 on desktop, 12 on mobile) */}
-            <div className="col-span-12 lg:col-span-4 text-center lg:text-left flex flex-col items-center lg:items-start animate-fade-up" style={{ animationDelay: "0.4s" }}>
-              <p className="text-[14px] font-light text-[#F5F0E8]/70 leading-[1.7] mb-8 max-w-sm">
-                Join us in celebrating leadership, cultural heritage, and academic excellence as delegates from global regions showcase beauty with a purpose.
-              </p>
-              
-              {/* CTA Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                <a
-                  href="#apply"
-                  className="group w-full sm:w-auto bg-gradient-to-r from-[#BF9200] to-[#D4A800] hover:from-[#D4A800] hover:to-[#BF9200] text-white font-bold text-[13px] leading-none tracking-[0.02em] px-8 py-3.5 rounded-none transition-all duration-300 text-center shadow-[0_4px_18px_rgba(191,146,0,0.3)] flex items-center justify-center space-x-2"
-                >
-                  <span>Apply Now</span>
-                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-                <a
-                  href="#journey"
-                  className="w-full sm:w-auto bg-white/[0.03] hover:bg-white/[0.08] border border-white/20 hover:border-[#BF9200]/60 text-white font-bold text-[13px] leading-none tracking-[0.02em] px-8 py-3.5 rounded-none transition-all duration-300 text-center backdrop-blur-sm"
-                >
-                  Discover the Pageant
-                </a>
-              </div>
-            </div>
+            {/* Right Column: Spacer (Columns 9-12 on desktop, 12 on mobile) */}
+            <div className="col-span-12 lg:col-span-4" />
 
           </div>
         </div>
