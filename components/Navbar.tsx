@@ -53,10 +53,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
           scrolled
-            ? "bg-[#071E4A] border-b border-[#BF9200]/30 py-4 shadow-lg"
-            : "bg-transparent py-6 border-b border-transparent"
+            ? "bg-[#071E4A]/80 border-b border-[#BF9200]/25 py-3.5 backdrop-blur-md shadow-2xl shadow-black/30"
+            : "bg-transparent py-5 border-b border-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -79,12 +79,12 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => handleLinkClick(link.name)}
-                className="relative py-2 text-[14px] font-medium tracking-[0.08em] uppercase text-white hover:text-[#BF9200] transition-colors duration-200"
+                className="relative py-2 text-[14px] font-medium tracking-[0.02em] leading-none text-white hover:text-[#BF9200] transition-colors duration-200 group"
               >
-                {link.name}
-                {activeLink === link.name && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-[#BF9200]" />
-                )}
+                <span>{link.name}</span>
+                <span className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-[#BF9200] to-transparent shadow-[0_0_8px_#BF9200] transition-all duration-300 transform scale-x-0 group-hover:scale-x-100 ${
+                  activeLink === link.name ? "scale-x-100" : ""
+                }`} />
               </a>
             ))}
           </div>
@@ -94,7 +94,7 @@ export default function Navbar() {
             <a
               href="#apply"
               onClick={() => handleLinkClick("Apply")}
-              className="bg-[#BF9200] text-white hover:bg-[#D4A800] px-6 py-2.5 rounded-sm font-bold text-[14px] uppercase tracking-[0.1em] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 inline-block"
+              className="bg-gradient-to-r from-[#BF9200] to-[#D4A800] hover:from-[#D4A800] hover:to-[#BF9200] text-white px-7 py-3 rounded-none font-bold text-[14px] leading-none tracking-[0.02em] transition-all duration-300 shadow-[0_4px_14px_rgba(191,146,0,0.35)] hover:shadow-[0_6px_20px_rgba(191,146,0,0.55)] hover:-translate-y-0.5 active:translate-y-0 inline-block text-center"
             >
               Apply Now
             </a>
@@ -129,7 +129,7 @@ export default function Navbar() {
 
       {/* Full-Screen Overlay Menu (Mobile/Tablet) */}
       <div
-        className={`fixed inset-0 bg-[#0B2D6B] z-40 lg:hidden flex flex-col justify-between pt-28 pb-12 px-6 transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 bg-gradient-to-b from-[#071E4A] to-[#0B2D6B] z-40 lg:hidden flex flex-col justify-between pt-28 pb-12 px-6 transition-all duration-500 ease-in-out ${
           mobileMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-full pointer-events-none"
@@ -145,7 +145,7 @@ export default function Navbar() {
               style={{
                 transitionDelay: mobileMenuOpen ? `${idx * 0.05}s` : "0s",
               }}
-              className={`text-lg md:text-xl font-medium tracking-[0.1em] uppercase text-white hover:text-[#BF9200] transition-all duration-300 transform ${
+              className={`text-[14px] font-medium tracking-[0.02em] leading-none text-white hover:text-[#BF9200] transition-all duration-300 transform ${
                 mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
               }`}
             >
@@ -164,7 +164,7 @@ export default function Navbar() {
           <a
             href="#apply"
             onClick={() => handleLinkClick("Apply")}
-            className="w-full max-w-xs bg-[#BF9200] text-white hover:bg-[#D4A800] py-4 rounded-sm font-bold text-[14px] uppercase tracking-[0.1em] text-center shadow-lg transition-colors duration-300"
+            className="w-full max-w-xs bg-gradient-to-r from-[#BF9200] to-[#D4A800] text-white py-4 rounded-none font-bold text-[14px] leading-none tracking-[0.02em] text-center shadow-[0_4px_14px_rgba(191,146,0,0.3)] hover:shadow-[0_6px_20px_rgba(191,146,0,0.5)] transition-all duration-300"
           >
             Apply Now
           </a>
