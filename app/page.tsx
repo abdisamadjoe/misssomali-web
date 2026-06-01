@@ -82,14 +82,14 @@ export default function Home() {
         <Hero />
         
         {/* Partners Section (Marquee Ticker) */}
-        <section className="bg-[#F5F0E8] py-8 overflow-hidden border-b border-[#E8C97A]/15">
+        <section className="bg-[#FFFFFF] py-8 overflow-hidden border-b border-[#E8C97A]/15">
           <div className="grid-container">
             <div className="grid-12 items-center">
               <div className="col-span-12">
                 <div className="relative w-full overflow-hidden">
                   {/* Left & right fade overlays for elegant masking */}
-                  <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F5F0E8] to-transparent z-10 pointer-events-none" />
-                  <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F5F0E8] to-transparent z-10 pointer-events-none" />
+                  <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#FFFFFF] to-transparent z-10 pointer-events-none" />
+                  <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#FFFFFF] to-transparent z-10 pointer-events-none" />
                   
                   {/* Ticker track */}
                   <div className="logo-ticker-track flex items-center gap-16 py-2">
