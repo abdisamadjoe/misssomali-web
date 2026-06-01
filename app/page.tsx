@@ -122,23 +122,38 @@ export default function Home() {
           <div className="grid-container">
             <div className="grid-12 items-center gap-y-12 lg:gap-x-12">
               
-              {/* Left Column: Text Content */}
+              {/* Left Column: Text Content (Impressive Editorial Styling) */}
               <div className="col-span-12 lg:col-span-7 flex flex-col text-left">
-                <span className="text-[12px] font-bold tracking-[0.12em] uppercase text-[#0B2D6B]/60 block mb-4">
-                  About Miss Somali
-                </span>
-                <h2 className="text-[28px] sm:text-[36px] font-bold text-[#0B2D6B] mb-6">
-                  A Stage Built For Somali Women
+                {/* Decorative Label Row */}
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-6 h-[1px] bg-[#E8C97A]" />
+                  <span className="text-[12px] font-bold tracking-[0.15em] uppercase text-[#0B2D6B]/60">
+                    About Miss Somali
+                  </span>
+                </div>
+                
+                {/* Impressive Section Title */}
+                <h2 className="text-[32px] sm:text-[42px] font-extrabold text-[#0B2D6B] tracking-tight leading-[1.15] mb-6">
+                  A Stage Built For <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B2D6B] to-[#0D3A8A]">Somali Women</span>
                 </h2>
-                <p className="text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] font-normal tracking-tight leading-[1.4] text-[#111111]">
-                  Miss Somali was founded in Canada in 2025 to give Somali women a platform to be seen, celebrated, and heard on a global stage. We bring together talented Somali women from across the diaspora to compete, connect, and represent their culture with pride. <span className="text-[#8A8A8A]">One woman will be crowned Miss Somali. But every woman who steps forward changes what the world knows about us.</span>
+                
+                {/* Impressive Lead Body Text */}
+                <p className="text-[17px] sm:text-[20px] font-light leading-[1.65] text-[#111111]/90 max-w-2xl">
+                  Miss Somali was founded in Canada in 2025 to give Somali women a platform to be seen, celebrated, and heard on a global stage. We bring together talented Somali women from across the diaspora to compete, connect, and represent their culture with pride.
                 </p>
+
+                {/* Impressive Accent Callout Quote */}
+                <div className="border-l-2 border-[#E8C97A] pl-5 py-1 mt-6 max-w-xl">
+                  <p className="text-[16px] sm:text-[18px] font-semibold italic leading-[1.6] text-[#0D3A8A]">
+                    "One woman will be crowned Miss Somali. But every woman who steps forward changes what the world knows about us."
+                  </p>
+                </div>
               </div>
 
               {/* Right Column: Image with rounded radius, no crop, no hovered border */}
               <div className="col-span-12 lg:col-span-5">
                 <Image
-                  src="/images/about.jpeg"
+                  src="/images/aboutus.jpeg"
                   alt="About Miss Somali Pageant"
                   width={600}
                   height={450}
