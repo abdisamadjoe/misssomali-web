@@ -97,7 +97,7 @@ export default function Home() {
                     {[...partners, ...partners, ...partners, ...partners].map((p, idx) => (
                       <div
                         key={idx}
-                        className="flex-shrink-0 w-44 h-16 flex items-center justify-center p-2 transition-all duration-300 filter brightness-0 opacity-60 hover:brightness-100 hover:opacity-100"
+                        className="flex-shrink-0 w-44 h-16 flex items-center justify-center p-2 transition-all duration-300 filter grayscale opacity-100 hover:grayscale-0"
                       >
                         <Image
                           src={p.src}
