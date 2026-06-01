@@ -140,27 +140,27 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Centered Flex Container for the 5 circles */}
-              <div className="col-span-12 flex flex-wrap justify-center gap-8 lg:gap-12">
+              {/* Centered Row Container for the 5 circles */}
+              <div className="col-span-12 grid grid-cols-5 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center">
                 {trendingContestants.map((tc) => (
-                  <div key={tc.id} className="flex flex-col items-center group w-[160px] sm:w-[180px] lg:w-[200px]">
-                    <div className="relative w-36 h-36 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full p-[3px] bg-gradient-to-tr from-[#E8C97A]/30 to-[#E8C97A] transition-all duration-300 group-hover:scale-[1.03]">
-                      <div className="w-full h-full rounded-full bg-[#0B2D6B] p-[3px] flex items-center justify-center">
+                  <div key={tc.id} className="flex flex-col items-center group w-full max-w-[200px]">
+                    <div className="relative w-14 h-14 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full p-[2px] md:p-[3px] bg-gradient-to-tr from-[#E8C97A]/30 to-[#E8C97A] transition-all duration-300 group-hover:scale-[1.03]">
+                      <div className="w-full h-full rounded-full bg-[#0B2D6B] p-[1.5px] md:p-[3px] flex items-center justify-center">
                         <div className="relative w-full h-full rounded-full overflow-hidden">
                           <Image
                             src={tc.image}
                             alt={tc.name}
                             fill
-                            sizes="(max-w-768px) 150px, 200px"
+                            sizes="(max-w-768px) 100px, 200px"
                             className="object-cover"
                           />
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-[16px] lg:text-[18px] font-bold text-[#FFFFFF] mt-4 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A]">
+                    <h3 className="text-[10px] sm:text-[13px] md:text-[16px] lg:text-[18px] font-bold text-[#FFFFFF] mt-2 md:mt-4 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A] truncate w-full">
                       {tc.name}
                     </h3>
-                    <span className="text-[11px] font-bold tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-2.5 py-0.5 mt-2 rounded-full">
+                    <span className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-bold tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-1.5 sm:px-2.5 py-0.5 mt-1 md:mt-2 rounded-full whitespace-nowrap">
                       {tc.rank}
                     </span>
                   </div>
