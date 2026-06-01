@@ -55,6 +55,15 @@ const contestants = [
   { id: 4, name: "Yasmin Warsame", region: "Kismayo", image: "/images/contestant4.png" },
 ];
 
+const trendingContestants = [
+  { id: 1, name: "Hodan Warsame", image: "/images/contestant1.jpeg", rank: "Trending #1" },
+  { id: 2, name: "Ayan Cabdi", image: "/images/contestant2.jpeg", rank: "Trending #2" },
+  { id: 3, name: "Ifrah Maxamed", image: "/images/contestant3.jpeg", rank: "Trending #3" },
+  { id: 4, name: "Sahra Nuur", image: "/images/contestant4.jpeg", rank: "Trending #4" },
+  { id: 5, name: "Ilhan Osman", image: "/images/contestant5.jpeg", rank: "Trending #5" },
+];
+
+
 const partners = [
   { name: "Miss World", src: "/partners/MissWorld.svg" },
   { name: "Miss Universe", src: "/partners/MissUniverse.webp" },
@@ -114,6 +123,53 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Trending Contestants Section */}
+        <section id="trending" className="bg-[#0B2D6B] py-28 border-t border-[#E8C97A]/5">
+          <div className="grid-container">
+            <div className="grid-12">
+              <div className="col-span-12 text-center mb-16">
+                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#E8C97A] block mb-2">
+                  Trending Now
+                </span>
+                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#FFFFFF] tracking-[-0.02em] leading-[1.15] mb-6">
+                  Trending Contestants
+                </h2>
+                <p className="text-[#F5F0E8]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
+                  Meet the frontrunners of Miss Somali 2026 who are capturing hearts and driving conversations across the community.
+                </p>
+              </div>
+
+              {/* Centered Flex Container for the 5 circles */}
+              <div className="col-span-12 flex flex-wrap justify-center gap-8 lg:gap-12">
+                {trendingContestants.map((tc) => (
+                  <div key={tc.id} className="flex flex-col items-center group w-[160px] sm:w-[180px] lg:w-[200px]">
+                    <div className="relative w-36 h-36 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full p-[3px] bg-gradient-to-tr from-[#E8C97A]/30 to-[#E8C97A] transition-all duration-300 group-hover:scale-[1.03]">
+                      <div className="w-full h-full rounded-full bg-[#0B2D6B] p-[3px] flex items-center justify-center">
+                        <div className="relative w-full h-full rounded-full overflow-hidden">
+                          <Image
+                            src={tc.image}
+                            alt={tc.name}
+                            fill
+                            sizes="(max-w-768px) 150px, 200px"
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <h3 className="text-[16px] lg:text-[18px] font-bold text-[#FFFFFF] mt-4 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A]">
+                      {tc.name}
+                    </h3>
+                    <span className="text-[11px] font-bold tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-2.5 py-0.5 mt-2 rounded-full">
+                      {tc.rank}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Journey Section */}
         <section id="journey" className="bg-[#071E4A] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
