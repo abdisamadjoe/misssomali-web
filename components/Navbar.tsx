@@ -51,7 +51,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full z-50 bg-[#1A0524]/70 py-3.5 backdrop-blur-xl"
+        className="fixed top-0 left-0 w-full z-50 bg-[#071E4A]/70 py-3.5 backdrop-blur-xl"
       >
         <div className="grid-container">
           <div className="grid-12 items-center">
@@ -95,7 +95,7 @@ export default function Navbar() {
               <a
                 href="#apply"
                 onClick={() => handleLinkClick("Apply")}
-                className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#1A0524] px-5 py-2.5 rounded-full font-bold text-[13px] leading-none tracking-[0.02em] transition-colors duration-200 inline-block text-center border border-[#E8C97A]/20"
+                className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] px-5 py-2.5 rounded-full font-bold text-[13px] leading-none tracking-[0.02em] transition-colors duration-200 inline-block text-center border border-[#E8C97A]/20"
               >
                 Apply Now
               </a>
@@ -133,7 +133,7 @@ export default function Navbar() {
 
       {/* Full-Screen Overlay Menu (Mobile/Tablet) */}
       <div
-        className={`fixed inset-0 bg-[#1A0524]/98 backdrop-blur-2xl z-40 lg:hidden flex flex-col justify-between pt-32 pb-12 px-6 ${
+        className={`fixed inset-0 bg-[#071E4A]/98 backdrop-blur-2xl z-40 lg:hidden flex flex-col justify-between pt-32 pb-12 px-6 ${
           mobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -158,7 +158,7 @@ export default function Navbar() {
           <a
             href="#apply"
             onClick={() => handleLinkClick("Apply")}
-            className="w-full max-w-xs bg-[#E8C97A] hover:bg-[#F0D898] text-[#1A0524] py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] text-center transition-colors duration-200"
+            className="w-full max-w-xs bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] text-center transition-colors duration-200"
           >
             Apply Now
           </a>

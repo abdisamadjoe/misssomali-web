@@ -115,7 +115,7 @@ export default function Home() {
           </div>
         </section>
         {/* Journey Section */}
-        <section id="journey" className="bg-[#1A0524] py-28 border-t border-[#E8C97A]/5">
+        <section id="journey" className="bg-[#071E4A] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12">
               <div className="col-span-12 text-center mb-16">
@@ -131,7 +131,7 @@ export default function Home() {
               </div>
 
               {/* Journey Cards */}
-              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
+              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-[#0D3A8A] border border-[#0D3A8A] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
                 <div className="text-[32px] font-bold text-[#E8C97A]/30 group-hover:text-[#E8C97A]/80 transition-colors duration-300 mb-4">
                   {texts.journeyPhase1Number}
                 </div>
@@ -142,7 +142,7 @@ export default function Home() {
                   {texts.journeyPhase1Desc}
                 </p>
               </div>
-              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
+              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-[#0D3A8A] border border-[#0D3A8A] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
                 <div className="text-[32px] font-bold text-[#E8C97A]/30 group-hover:text-[#E8C97A]/80 transition-colors duration-300 mb-4">
                   {texts.journeyPhase2Number}
                 </div>
@@ -153,7 +153,7 @@ export default function Home() {
                   {texts.journeyPhase2Desc}
                 </p>
               </div>
-              <div className="col-span-12 md:col-span-6 lg:col-span-4 md:col-start-4 lg:col-start-auto bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
+              <div className="col-span-12 md:col-span-6 lg:col-span-4 md:col-start-4 lg:col-start-auto bg-[#0D3A8A] border border-[#0D3A8A] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
                 <div className="text-[32px] font-bold text-[#E8C97A]/30 group-hover:text-[#E8C97A]/80 transition-colors duration-300 mb-4">
                   {texts.journeyPhase3Number}
                 </div>
@@ -169,7 +169,7 @@ export default function Home() {
         </section>
 
         {/* Contestants Section */}
-        <section id="contestants" className="bg-[#2C0A3B] py-28 border-t border-[#E8C97A]/5">
+        <section id="contestants" className="bg-[#0B2D6B] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12">
               <div className="col-span-12 text-center mb-16">
@@ -186,7 +186,7 @@ export default function Home() {
 
               {/* Contestant Cards */}
               {contestants.map((c) => (
-                <div key={c.id} className="col-span-12 sm:col-span-6 lg:col-span-3 bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/40 overflow-hidden transition-all duration-300 group shadow-md hover:shadow-lg flex flex-col">
+                <div key={c.id} className="col-span-12 sm:col-span-6 lg:col-span-3 bg-[#0D3A8A] border border-[#0D3A8A] hover:border-[#E8C97A]/40 overflow-hidden transition-all duration-300 group shadow-md hover:shadow-lg flex flex-col">
                   <div className="relative h-[300px] w-full overflow-hidden">
                     <Image
                       src={c.image}
@@ -196,7 +196,7 @@ export default function Home() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-5 bg-[#3D1050] border-t border-[#1A0524]/20 flex-1 flex flex-col justify-center">
+                  <div className="p-5 bg-[#0D3A8A] border-t border-[#071E4A]/20 flex-1 flex flex-col justify-center">
                     <span className="text-[12px] font-semibold tracking-normal text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-2.5 py-1 inline-block self-start mb-2">
                       {c.region}
                     </span>
@@ -211,7 +211,7 @@ export default function Home() {
         </section>
 
         {/* Events Section */}
-        <section id="events" className="bg-[#1A0524] py-28 border-t border-[#E8C97A]/5">
+        <section id="events" className="bg-[#071E4A] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12 gap-y-12">
               <div className="col-span-12 text-center mb-8">
@@ -227,8 +227,8 @@ export default function Home() {
               </div>
 
               {/* Asymmetrical layout: Featured Event spans 7 cols, right side spans 5 cols */}
-              <div className="col-span-12 lg:col-span-7 bg-[#3D1050] border border-[#E8C97A]/35 p-8 md:p-12 flex flex-col justify-between shadow-xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 bg-[#E8C97A] text-[#1A0524] font-semibold text-[12px] px-4 py-2">
+              <div className="col-span-12 lg:col-span-7 bg-[#0D3A8A] border border-[#E8C97A]/35 p-8 md:p-12 flex flex-col justify-between shadow-xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 bg-[#E8C97A] text-[#071E4A] font-semibold text-[12px] px-4 py-2">
                   {texts.featuredLabel}
                 </div>
                 <div>
@@ -256,7 +256,7 @@ export default function Home() {
               {/* Right Side: List of events (5 cols) */}
               <div className="col-span-12 lg:col-span-5 flex flex-col gap-6">
                 {events.map((e, idx) => (
-                  <div key={idx} className="bg-[#3D1050] border border-[#3D1050] p-6 hover:border-[#E8C97A]/20 transition-all duration-300 shadow-sm hover:shadow-md">
+                  <div key={idx} className="bg-[#0D3A8A] border border-[#0D3A8A] p-6 hover:border-[#E8C97A]/20 transition-all duration-300 shadow-sm hover:shadow-md">
                     <span className="text-[12px] font-semibold text-[#E8C97A] block mb-2">{e.date}</span>
                     <h4 className="text-lg font-bold text-[#FFFFFF] mb-2">{e.title}</h4>
                     <p className="text-[#F5F0E8]/70 text-[15px] font-light leading-[1.7]">{e.desc}</p>
@@ -268,7 +268,7 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="bg-[#2C0A3B] py-28 border-t border-[#E8C97A]/5">
+        <section id="about" className="bg-[#0B2D6B] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12 items-center gap-y-12">
               {/* Left Side: About Narrative (6 cols) */}
@@ -307,13 +307,13 @@ export default function Home() {
       </main>
 
       {/* Footer Section */}
-      <footer id="contact" className="bg-[#1A0524] py-20 border-t border-[#E8C97A]/10 text-[#F5F0E8]">
+      <footer id="contact" className="bg-[#071E4A] py-20 border-t border-[#E8C97A]/10 text-[#F5F0E8]">
         <div className="grid-container">
           <div className="grid-12 gap-y-12">
             {/* Column 1 (4 cols) */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col justify-between">
               <div>
-                <div className="bg-[#2C0A3B] px-4 py-3.5 inline-block mb-6 shadow-sm">
+                <div className="bg-[#0B2D6B] px-4 py-3.5 inline-block mb-6 shadow-sm">
                   <Image
                     src="/logo.png"
                     alt="Miss Somali Logo"
@@ -376,9 +376,9 @@ export default function Home() {
                 <input
                   type="email"
                   placeholder={texts.footerNewsletterPlaceholder}
-                  className="bg-white border border-[#E8C97A]/15 px-3 py-2 text-[15px] font-normal focus:outline-none focus:border-[#E8C97A] w-full text-[#1A0524] rounded-none placeholder-[#1A0524]/50"
+                  className="bg-white border border-[#E8C97A]/15 px-3 py-2 text-[15px] font-normal focus:outline-none focus:border-[#E8C97A] w-full text-[#071E4A] rounded-none placeholder-[#071E4A]/50"
                 />
-                <button type="submit" className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#1A0524] font-bold px-4 text-[14px] tracking-[0.02em] leading-none transition-colors duration-200 cursor-pointer">
+                <button type="submit" className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] font-bold px-4 text-[14px] tracking-[0.02em] leading-none transition-colors duration-200 cursor-pointer">
                   {texts.footerNewsletterCTA}
                 </button>
               </form>

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #2C0A3B;
+  --background: #0B2D6B;
   --foreground: #F5F0E8;
 }
 
 @theme inline {
-  --color-brand-purple-primary: #2C0A3B;
-  --color-brand-purple-dark: #1A0524;
-  --color-brand-purple-mid: #3D1050;
+  --color-brand-blue-primary: #0B2D6B;
+  --color-brand-blue-dark: #071E4A;
+  --color-brand-blue-mid: #0D3A8A;
   --color-brand-gold-primary: #E8C97A;
   --color-brand-gold-hover: #F0D898;
   --color-brand-offwhite: #F5F0E8;

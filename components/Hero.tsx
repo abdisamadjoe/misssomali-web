@@ -6,11 +6,11 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen lg:h-screen flex flex-col overflow-hidden bg-gradient-to-b from-[#2C0A3B] via-[#3D1050] to-[#1A0524] pt-28 pb-0 lg:py-0"
+      className="relative w-full min-h-screen lg:h-screen flex flex-col overflow-hidden bg-gradient-to-b from-[#0B2D6B] via-[#0D3A8A] to-[#071E4A] pt-28 pb-0 lg:py-0"
     >
       {/* Background Spotlights & Grid */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#1A0524_95%)] z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#071E4A_95%)] z-10" />
         <div className="absolute inset-0 bg-grid-pattern opacity-35 z-15 pointer-events-none" />
       </div>
 
@@ -45,7 +45,7 @@ export default function Hero() {
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full">
                 <a
                   href="#apply"
-                  className="w-full sm:w-auto bg-[#E8C97A] hover:bg-[#F0D898] text-[#1A0524] px-8 py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] transition-colors duration-200 inline-block text-center border border-[#E8C97A]/25"
+                  className="w-full sm:w-auto bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] px-8 py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] transition-colors duration-200 inline-block text-center border border-[#E8C97A]/25"
                 >
                   Apply Now
                 </a>
