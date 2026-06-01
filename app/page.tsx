@@ -123,11 +123,10 @@ export default function Home() {
             <div className="grid-12 items-center gap-y-12 lg:gap-x-12">
               
               {/* Left Column: Text Content (Impressive Editorial Styling) */}
-              <div className="col-span-12 lg:col-span-7 flex flex-col text-left">
-                {/* Decorative Label Row */}
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-6 h-[1px] bg-[#E8C97A]" />
-                  <span className="text-[12px] font-bold tracking-[0.15em] uppercase text-[#0B2D6B]/60">
+              <div className="col-span-12 lg:col-span-7 flex flex-col text-left items-start">
+                {/* Pill Badge */}
+                <div className="mb-6">
+                  <span className="text-[11px] font-bold tracking-[0.08em] uppercase text-[#0B2D6B] bg-[#E8C97A]/15 border border-[#E8C97A]/30 px-3.5 py-1 rounded-full inline-block">
                     About Miss Somali
                   </span>
                 </div>
