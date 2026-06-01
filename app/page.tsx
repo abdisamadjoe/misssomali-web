@@ -82,14 +82,14 @@ export default function Home() {
         <Hero />
         
         {/* Partners Section (Marquee Ticker) */}
-        <section className="bg-white py-8 overflow-hidden border-b border-[#BF9200]/10">
+        <section className="bg-[#2C0A3B] py-8 overflow-hidden border-b border-[#E8C97A]/10">
           <div className="grid-container">
             <div className="grid-12 items-center">
               <div className="col-span-12">
                 <div className="relative w-full overflow-hidden">
                   {/* Left & right fade overlays for elegant masking */}
-                  <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                  <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+                  <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#2C0A3B] to-transparent z-10 pointer-events-none" />
+                  <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#2C0A3B] to-transparent z-10 pointer-events-none" />
                   
                   {/* Ticker track */}
                   <div className="logo-ticker-track flex items-center gap-16 py-2">
@@ -115,52 +115,52 @@ export default function Home() {
           </div>
         </section>
         {/* Journey Section */}
-        <section id="journey" className="bg-[#F5F0E8] py-28 border-t border-[#071E4A]/5">
+        <section id="journey" className="bg-[#1A0524] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12">
               <div className="col-span-12 text-center mb-16">
-                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#BF9200] block mb-2">
+                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#E8C97A] block mb-2">
                   {texts.journeyLabel}
                 </span>
-                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#071E4A] tracking-[-0.02em] leading-[1.15] mb-6">
+                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#FFFFFF] tracking-[-0.02em] leading-[1.15] mb-6">
                   {texts.journeyTitle}
                 </h2>
-                <p className="text-[#071E4A]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
+                <p className="text-[#F5F0E8]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
                   {texts.journeyDesc}
                 </p>
               </div>
 
               {/* Journey Cards */}
-              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-white border border-[#071E4A]/10 hover:border-[#BF9200]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
-                <div className="text-[32px] font-bold text-[#BF9200]/30 group-hover:text-[#BF9200]/80 transition-colors duration-300 mb-4">
+              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
+                <div className="text-[32px] font-bold text-[#E8C97A]/30 group-hover:text-[#E8C97A]/80 transition-colors duration-300 mb-4">
                   {texts.journeyPhase1Number}
                 </div>
-                <h3 className="text-xl font-bold text-[#071E4A] mb-3">
+                <h3 className="text-xl font-bold text-[#FFFFFF] mb-3">
                   {texts.journeyPhase1Title}
                 </h3>
-                <p className="text-[#071E4A]/70 text-[14px] leading-relaxed">
+                <p className="text-[#F5F0E8]/70 text-[15px] font-light leading-[1.7] tracking-normal">
                   {texts.journeyPhase1Desc}
                 </p>
               </div>
-              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-white border border-[#071E4A]/10 hover:border-[#BF9200]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
-                <div className="text-[32px] font-bold text-[#BF9200]/30 group-hover:text-[#BF9200]/80 transition-colors duration-300 mb-4">
+              <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
+                <div className="text-[32px] font-bold text-[#E8C97A]/30 group-hover:text-[#E8C97A]/80 transition-colors duration-300 mb-4">
                   {texts.journeyPhase2Number}
                 </div>
-                <h3 className="text-xl font-bold text-[#071E4A] mb-3">
+                <h3 className="text-xl font-bold text-[#FFFFFF] mb-3">
                   {texts.journeyPhase2Title}
                 </h3>
-                <p className="text-[#071E4A]/70 text-[14px] leading-relaxed">
+                <p className="text-[#F5F0E8]/70 text-[15px] font-light leading-[1.7] tracking-normal">
                   {texts.journeyPhase2Desc}
                 </p>
               </div>
-              <div className="col-span-12 md:col-span-6 lg:col-span-4 md:col-start-4 lg:col-start-auto bg-white border border-[#071E4A]/10 hover:border-[#BF9200]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
-                <div className="text-[32px] font-bold text-[#BF9200]/30 group-hover:text-[#BF9200]/80 transition-colors duration-300 mb-4">
+              <div className="col-span-12 md:col-span-6 lg:col-span-4 md:col-start-4 lg:col-start-auto bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/30 p-8 transition-all duration-300 group shadow-sm hover:shadow-md">
+                <div className="text-[32px] font-bold text-[#E8C97A]/30 group-hover:text-[#E8C97A]/80 transition-colors duration-300 mb-4">
                   {texts.journeyPhase3Number}
                 </div>
-                <h3 className="text-xl font-bold text-[#071E4A] mb-3">
+                <h3 className="text-xl font-bold text-[#FFFFFF] mb-3">
                   {texts.journeyPhase3Title}
                 </h3>
-                <p className="text-[#071E4A]/70 text-[14px] leading-relaxed">
+                <p className="text-[#F5F0E8]/70 text-[15px] font-light leading-[1.7] tracking-normal">
                   {texts.journeyPhase3Desc}
                 </p>
               </div>
@@ -169,24 +169,24 @@ export default function Home() {
         </section>
 
         {/* Contestants Section */}
-        <section id="contestants" className="bg-white py-28 border-t border-[#071E4A]/5">
+        <section id="contestants" className="bg-[#2C0A3B] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12">
               <div className="col-span-12 text-center mb-16">
-                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#BF9200] block mb-2">
+                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#E8C97A] block mb-2">
                   {texts.contestantsLabel}
                 </span>
-                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#071E4A] tracking-[-0.02em] leading-[1.15] mb-6">
+                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#FFFFFF] tracking-[-0.02em] leading-[1.15] mb-6">
                   {texts.contestantsTitle}
                 </h2>
-                <p className="text-[#071E4A]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
+                <p className="text-[#F5F0E8]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
                   {texts.contestantsDesc}
                 </p>
               </div>
 
               {/* Contestant Cards */}
               {contestants.map((c) => (
-                <div key={c.id} className="col-span-12 sm:col-span-6 lg:col-span-3 bg-white border border-[#071E4A]/10 hover:border-[#BF9200]/40 overflow-hidden transition-all duration-300 group shadow-md hover:shadow-lg flex flex-col">
+                <div key={c.id} className="col-span-12 sm:col-span-6 lg:col-span-3 bg-[#3D1050] border border-[#3D1050] hover:border-[#E8C97A]/40 overflow-hidden transition-all duration-300 group shadow-md hover:shadow-lg flex flex-col">
                   <div className="relative h-[300px] w-full overflow-hidden">
                     <Image
                       src={c.image}
@@ -196,11 +196,11 @@ export default function Home() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-5 bg-white border-t border-[#071E4A]/5 flex-1 flex flex-col justify-center">
-                    <span className="text-[10px] font-bold tracking-[0.05em] text-[#BF9200] uppercase bg-[#BF9200]/10 border border-[#BF9200]/20 px-2.5 py-1 inline-block self-start mb-2">
+                  <div className="p-5 bg-[#3D1050] border-t border-[#1A0524]/20 flex-1 flex flex-col justify-center">
+                    <span className="text-[12px] font-semibold tracking-normal text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-2.5 py-1 inline-block self-start mb-2">
                       {c.region}
                     </span>
-                    <h3 className="text-lg font-bold text-[#071E4A] tracking-tight leading-tight">
+                    <h3 className="text-[20px] font-semibold text-[#FFFFFF] tracking-tight leading-tight">
                       {c.name}
                     </h3>
                   </div>
@@ -211,44 +211,44 @@ export default function Home() {
         </section>
 
         {/* Events Section */}
-        <section id="events" className="bg-[#F5F0E8] py-28 border-t border-[#071E4A]/5">
+        <section id="events" className="bg-[#1A0524] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12 gap-y-12">
               <div className="col-span-12 text-center mb-8">
-                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#BF9200] block mb-2">
+                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#E8C97A] block mb-2">
                   {texts.eventsLabel}
                 </span>
-                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#071E4A] tracking-[-0.02em] leading-[1.15] mb-6">
+                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#FFFFFF] tracking-[-0.02em] leading-[1.15] mb-6">
                   {texts.eventsTitle}
                 </h2>
-                <p className="text-[#071E4A]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
+                <p className="text-[#F5F0E8]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
                   {texts.eventsDesc}
                 </p>
               </div>
 
               {/* Asymmetrical layout: Featured Event spans 7 cols, right side spans 5 cols */}
-              <div className="col-span-12 lg:col-span-7 bg-white border border-[#BF9200]/35 p-8 md:p-12 flex flex-col justify-between shadow-xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 bg-[#BF9200] text-white font-bold text-[12px] uppercase px-4 py-2 tracking-wider">
+              <div className="col-span-12 lg:col-span-7 bg-[#3D1050] border border-[#E8C97A]/35 p-8 md:p-12 flex flex-col justify-between shadow-xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 bg-[#E8C97A] text-[#1A0524] font-semibold text-[12px] px-4 py-2">
                   {texts.featuredLabel}
                 </div>
                 <div>
-                  <span className="text-sm font-semibold text-[#BF9200] tracking-wide block mb-3">
+                  <span className="text-sm font-semibold text-[#E8C97A] tracking-wide block mb-3">
                     {texts.featuredDate}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-extrabold text-[#071E4A] mb-4 leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-[#FFFFFF] mb-4 leading-tight">
                     {texts.featuredTitle}
                   </h3>
-                  <p className="text-[#071E4A]/80 text-[15px] leading-relaxed mb-6">
+                  <p className="text-[#F5F0E8]/80 text-[15px] font-light leading-[1.7] mb-6">
                     {texts.featuredDesc}
                   </p>
                 </div>
                 <a
                   href="#apply"
-                  className="inline-flex items-center space-x-2 text-[14px] font-bold text-[#BF9200] hover:text-[#0D3A8A] transition-colors duration-200"
+                  className="inline-flex items-center space-x-2 text-[14px] font-bold tracking-[0.02em] leading-none text-[#E8C97A] hover:text-[#F0D898] transition-colors duration-200"
                 >
                   <span>{texts.featuredCTA}</span>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
               </div>
@@ -256,10 +256,10 @@ export default function Home() {
               {/* Right Side: List of events (5 cols) */}
               <div className="col-span-12 lg:col-span-5 flex flex-col gap-6">
                 {events.map((e, idx) => (
-                  <div key={idx} className="bg-white border border-[#071E4A]/10 p-6 hover:border-[#BF9200]/20 transition-all duration-300 shadow-sm hover:shadow-md">
-                    <span className="text-xs font-bold text-[#BF9200] block mb-2">{e.date}</span>
-                    <h4 className="text-lg font-bold text-[#071E4A] mb-2">{e.title}</h4>
-                    <p className="text-[#071E4A]/70 text-xs leading-relaxed">{e.desc}</p>
+                  <div key={idx} className="bg-[#3D1050] border border-[#3D1050] p-6 hover:border-[#E8C97A]/20 transition-all duration-300 shadow-sm hover:shadow-md">
+                    <span className="text-[12px] font-semibold text-[#E8C97A] block mb-2">{e.date}</span>
+                    <h4 className="text-lg font-bold text-[#FFFFFF] mb-2">{e.title}</h4>
+                    <p className="text-[#F5F0E8]/70 text-[15px] font-light leading-[1.7]">{e.desc}</p>
                   </div>
                 ))}
               </div>
@@ -268,21 +268,21 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="bg-white py-28 border-t border-[#071E4A]/5">
+        <section id="about" className="bg-[#2C0A3B] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12 items-center gap-y-12">
               {/* Left Side: About Narrative (6 cols) */}
               <div className="col-span-12 lg:col-span-6">
-                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#BF9200] block mb-2">
+                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#E8C97A] block mb-2">
                   {texts.aboutLabel}
                 </span>
-                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#071E4A] tracking-[-0.02em] leading-[1.15] mb-6">
+                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#FFFFFF] tracking-[-0.02em] leading-[1.15] mb-6">
                   {texts.aboutTitle}
                 </h2>
-                <p className="text-[#071E4A]/70 text-[15px] leading-relaxed mb-6">
+                <p className="text-[#F5F0E8]/75 text-[15px] font-light leading-[1.7] mb-6">
                   {texts.aboutDesc1}
                 </p>
-                <p className="text-[#071E4A]/70 text-[15px] leading-relaxed">
+                <p className="text-[#F5F0E8]/75 text-[15px] font-light leading-[1.7]">
                   {texts.aboutDesc2}
                 </p>
               </div>
@@ -291,12 +291,12 @@ export default function Home() {
               <div className="col-span-12 lg:col-span-6 flex flex-col gap-6 lg:pl-10">
                 {values.map((v, idx) => (
                   <div key={idx} className="flex gap-4 items-start">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-[#BF9200] flex items-center justify-center text-xs font-bold text-[#BF9200]">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-[#E8C97A] flex items-center justify-center text-[12px] font-semibold text-[#E8C97A]">
                       {idx + 1}
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-[#071E4A] mb-2">{v.title}</h4>
-                      <p className="text-[#071E4A]/70 text-sm leading-relaxed">{v.desc}</p>
+                      <h4 className="text-lg font-bold text-[#FFFFFF] mb-2">{v.title}</h4>
+                      <p className="text-[#F5F0E8]/75 text-[15px] font-light leading-[1.7]">{v.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -307,13 +307,13 @@ export default function Home() {
       </main>
 
       {/* Footer Section */}
-      <footer id="contact" className="bg-[#EAE4D9] py-20 border-t border-[#071E4A]/10 text-[#071E4A]">
+      <footer id="contact" className="bg-[#1A0524] py-20 border-t border-[#E8C97A]/10 text-[#F5F0E8]">
         <div className="grid-container">
           <div className="grid-12 gap-y-12">
             {/* Column 1 (4 cols) */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col justify-between">
               <div>
-                <div className="bg-[#071E4A] px-4 py-3.5 inline-block mb-6 shadow-sm">
+                <div className="bg-[#2C0A3B] px-4 py-3.5 inline-block mb-6 shadow-sm">
                   <Image
                     src="/logo.png"
                     alt="Miss Somali Logo"
@@ -322,14 +322,14 @@ export default function Home() {
                     className="w-auto h-8 object-contain"
                   />
                 </div>
-                <p className="text-[#071E4A]/75 text-[14px] leading-relaxed max-w-sm">
+                <p className="text-[#F5F0E8]/75 text-[15px] font-light leading-[1.7] max-w-sm">
                   {texts.footerDesc}
                 </p>
               </div>
               <div className="flex space-x-4 mt-6">
                 {/* Social links */}
                 {["twitter", "facebook", "instagram", "youtube"].map((social) => (
-                  <a key={social} href="#" className="w-8 h-8 rounded-none border border-[#071E4A]/15 flex items-center justify-center hover:border-[#BF9200] hover:text-[#BF9200] transition-all duration-300 text-xs flex items-center justify-center font-bold text-[#071E4A]">
+                  <a key={social} href="#" className="w-8 h-8 rounded-none border border-[#E8C97A]/15 flex items-center justify-center hover:border-[#E8C97A] hover:text-[#E8C97A] transition-all duration-300 text-[12px] flex items-center justify-center font-semibold text-[#F5F0E8]">
                     {social[0].toUpperCase()}
                   </a>
                 ))}
@@ -338,13 +338,13 @@ export default function Home() {
 
             {/* Column 2 (3 cols) */}
             <div className="col-span-6 md:col-span-3 lg:col-span-3">
-              <h4 className="text-sm font-bold text-[#BF9200] tracking-wider uppercase mb-6">
+              <h4 className="text-[12px] font-semibold text-[#E8C97A] mb-6">
                 {texts.footerQuickLinks}
               </h4>
-              <ul className="flex flex-col gap-3 text-[14px] text-[#071E4A]/85">
+              <ul className="flex flex-col gap-3 text-[13px] font-normal text-[#F5F0E8]/85">
                 {["Home", "The Journey", "Contestants", "Events", "About"].map((link) => (
                   <li key={link}>
-                    <a href={`#${link.toLowerCase().replace(" ", "")}`} className="hover:text-[#BF9200] transition-colors duration-200">
+                    <a href={`#${link.toLowerCase().replace(" ", "")}`} className="hover:text-[#F0D898] transition-colors duration-200">
                       {link}
                     </a>
                   </li>
@@ -354,10 +354,10 @@ export default function Home() {
 
             {/* Column 3 (3 cols) */}
             <div className="col-span-6 md:col-span-3 lg:col-span-3">
-              <h4 className="text-sm font-bold text-[#BF9200] tracking-wider uppercase mb-6">
+              <h4 className="text-[12px] font-semibold text-[#E8C97A] mb-6">
                 {texts.footerContact}
               </h4>
-              <ul className="flex flex-col gap-3 text-[14px] text-[#071E4A]/75">
+              <ul className="flex flex-col gap-3 text-[13px] font-normal text-[#F5F0E8]/75">
                 <li>{texts.footerContactEmail}</li>
                 <li>{texts.footerContactPhone}</li>
                 <li>{texts.footerContactOffice}</li>
@@ -366,30 +366,30 @@ export default function Home() {
 
             {/* Column 4 (2 cols) */}
             <div className="col-span-12 md:col-span-12 lg:col-span-2">
-              <h4 className="text-sm font-bold text-[#BF9200] tracking-wider uppercase mb-6">
+              <h4 className="text-[12px] font-semibold text-[#E8C97A] mb-6">
                 {texts.footerNewsletter}
               </h4>
-              <p className="text-xs text-[#071E4A]/75 mb-4 leading-relaxed font-light">
+              <p className="text-[15px] text-[#F5F0E8]/75 mb-4 leading-[1.7] font-light">
                 {texts.footerNewsletterDesc}
               </p>
               <form className="flex" onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="email"
                   placeholder={texts.footerNewsletterPlaceholder}
-                  className="bg-white border border-[#071E4A]/15 px-3 py-2 text-xs focus:outline-none focus:border-[#BF9200] w-full text-[#071E4A] rounded-none placeholder-[#071E4A]/50"
+                  className="bg-white border border-[#E8C97A]/15 px-3 py-2 text-[15px] font-normal focus:outline-none focus:border-[#E8C97A] w-full text-[#1A0524] rounded-none placeholder-[#1A0524]/50"
                 />
-                <button type="submit" className="bg-[#071E4A] hover:bg-[#0B2D6B] text-white font-bold px-3 text-xs transition-colors duration-200 cursor-pointer">
+                <button type="submit" className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#1A0524] font-bold px-4 text-[14px] tracking-[0.02em] leading-none transition-colors duration-200 cursor-pointer">
                   {texts.footerNewsletterCTA}
                 </button>
               </form>
             </div>
 
             {/* Copyright row */}
-            <div className="col-span-12 border-t border-[#071E4A]/10 pt-8 mt-4 text-center text-xs text-[#071E4A]/60 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="col-span-12 border-t border-[#E8C97A]/10 pt-8 mt-4 text-center text-[13px] font-normal text-[#F5F0E8]/60 flex flex-col md:flex-row justify-between items-center gap-4">
               <span>{texts.footerCopyright}</span>
               <div className="flex gap-6">
-                <a href="#" className="hover:text-[#071E4A]">{texts.footerPrivacy}</a>
-                <a href="#" className="hover:text-[#071E4A]">{texts.footerTerms}</a>
+                <a href="#" className="hover:text-[#E8C97A]">{texts.footerPrivacy}</a>
+                <a href="#" className="hover:text-[#E8C97A]">{texts.footerTerms}</a>
               </div>
             </div>
           </div>

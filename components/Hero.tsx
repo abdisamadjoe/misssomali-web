@@ -1,113 +1,110 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 
-
 export default function Hero() {
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  // Listen to scroll to dismiss the bouncing chevron scroll indicator
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setHasScrolled(true);
-      } else {
-        setHasScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen lg:h-screen flex items-center overflow-hidden bg-[#071E4A] py-28 lg:py-0"
+      className="relative w-full min-h-screen lg:h-screen flex flex-col overflow-hidden bg-gradient-to-b from-[#2C0A3B] via-[#3D1050] to-[#1A0524] pt-28 pb-0 lg:py-0"
     >
-      {/* Background Image with Dark Blur Overlay */}
+      {/* Background Spotlights & Grid */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <Image
-          src="/images/background.png"
-          alt="Miss Somali Background"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center blur-md scale-105 opacity-55"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071E4A] via-[#071E4A]/60 to-[#071E4A]/35 z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#071E4A/70_80%)] z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#1A0524_95%)] z-10" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-35 z-15 pointer-events-none" />
       </div>
 
       {/* Centered content block aligned to the 12-column grid */}
-      <div className="relative w-full z-20 flex flex-col justify-center">
-        <div className="grid-container">
-          <div className="grid-12 items-center gap-y-12 lg:gap-y-0">
+      <div className="relative w-full z-20 flex flex-col flex-1">
+        <div className="grid-container flex-1 flex flex-col justify-between">
+          <div className="grid-12 items-center gap-y-12 lg:gap-y-0 flex-1 pt-12 pb-0 lg:py-0">
             
-            {/* Left Column: Title and Slogan (Columns 1-4 on desktop, 12 on mobile) */}
-            <div className="col-span-12 lg:col-span-4 text-center lg:text-left flex flex-col items-center lg:items-start animate-fade-up">
-              <span className="text-[12px] font-semibold tracking-[0.05em] leading-[1.7] text-[#BF9200] block">
-                Miss Somali 2026
-              </span>
-              
-              {/* Custom Crown Divider */}
-              <div className="flex items-center justify-center lg:justify-start space-x-4 my-5 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#BF9200] lg:hidden" />
-                <svg className="w-6 h-6 text-[#BF9200]" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 4.5l3.5 5.5h-7L12 4.5zM2 19h20v2H2v-2zm2-7l3 7h10l3-7-4 2-4-8-4 8-4-2z" />
-                </svg>
-                <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#BF9200]" />
+            {/* Left Column: Content & Stats (Columns 1-5 on desktop, 12 on mobile) */}
+            <div className="col-span-12 lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
+              {/* Luxury Badge */}
+              <div className="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md mb-6">
+                <span className="w-1.5 h-1.5 bg-[#E8C97A] rounded-full" />
+                <span className="text-[12px] font-semibold tracking-normal text-[#F5F0E8]/90">
+                  Miss Somali Pageant 2026
+                </span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-[34px] xl:text-[48px] font-extrabold text-white tracking-[-0.02em] leading-[1.2]">
-                Who Wears <br className="hidden lg:block" /> the Crown?
+              <h1 className="text-[38px] lg:text-[64px] font-extrabold text-white tracking-[-0.02em] leading-[1.15] text-center lg:text-left">
+                Who Wears <br />
+                the Crown?
               </h1>
+
+              {/* Luxury Divider */}
+              <div className="w-16 h-[2px] bg-[#E8C97A] my-6 rounded-full" />
               
               {/* Slogan */}
-              <p className="mt-4 text-[14px] font-light text-[#F5F0E8]/80 leading-[1.6] max-w-[280px]">
-                The Search for the Next Somali Queen Begins.
+              <p className="text-[15px] font-light text-[#F5F0E8]/70 leading-[1.7] max-w-[360px] text-center lg:text-left">
+                An extraordinary journey celebrating cultural heritage, intellect, and leadership. The search for the next global ambassador begins here.
               </p>
+
+              {/* CTA Buttons */}
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full">
+                <a
+                  href="#apply"
+                  className="w-full sm:w-auto relative bg-[#E8C97A] text-[#1A0524] px-8 py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] transition-all duration-300 shadow-[0_5px_25px_rgba(232,201,122,0.3)] hover:shadow-[0_8px_35px_rgba(232,201,122,0.5)] hover:-translate-y-0.5 active:translate-y-0 inline-block text-center border border-[#E8C97A]/25"
+                >
+                  Register as Delegate
+                </a>
+                <a
+                  href="#journey"
+                  className="w-full sm:w-auto flex items-center justify-center space-x-3 bg-white/5 hover:bg-white/10 text-white px-8 py-4 rounded-full border border-white/10 hover:border-[#E8C97A]/30 transition-all duration-300 group"
+                >
+                  <span className="w-5 h-5 rounded-full bg-[#E8C97A]/25 flex items-center justify-center text-[#E8C97A] group-hover:bg-[#E8C97A] group-hover:text-[#1A0524] transition-all duration-300">
+                    <svg className="w-2.5 h-2.5 ml-0.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                  <span className="text-[14px] font-bold tracking-[0.02em] leading-none">Watch Journey</span>
+                </a>
+              </div>
+
+              {/* Statistics Block */}
+              <div className="mt-12 flex items-center justify-center lg:justify-start space-x-6 sm:space-x-10 border-t border-white/10 pt-8 w-full max-w-[480px]">
+                <div>
+                  <div className="text-[26px] font-extrabold text-white leading-none">18</div>
+                  <div className="text-[12px] font-semibold text-[#F5F0E8]/50 mt-1.5">Delegates</div>
+                </div>
+                <div className="h-8 w-[1px] bg-white/10" />
+                <div>
+                  <div className="text-[26px] font-extrabold text-white leading-none">01</div>
+                  <div className="text-[12px] font-semibold text-[#F5F0E8]/50 mt-1.5">Queen</div>
+                </div>
+                <div className="h-8 w-[1px] bg-white/10" />
+                <div>
+                  <div className="text-[26px] font-extrabold text-white leading-none">Global</div>
+                  <div className="text-[12px] font-semibold text-[#F5F0E8]/50 mt-1.5">Broadcast</div>
+                </div>
+              </div>
             </div>
 
-            {/* Center Column Spacer: reserves Columns 5-8 on desktop, hidden on mobile */}
-            <div className="hidden lg:block lg:col-span-4 pointer-events-none" />
+            {/* Right Column: Portrait Image & Backdrops (Columns 6-12 on desktop, 12 on mobile) */}
+            <div className="col-span-12 lg:col-span-7 flex justify-center items-end relative lg:h-[86vh] xl:h-[95vh] z-10 lg:self-end pb-0 mb-0">
+              
+              {/* Glowing Gold Halo Spotlight */}
+              <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] sm:w-[450px] sm:h-[450px] lg:w-[600px] lg:h-[600px] bg-gradient-to-r from-[#E8C97A]/25 to-transparent blur-3xl rounded-full z-0 pointer-events-none hidden md:block" />
 
-            {/* Center Column: Portrait Image (Columns 5-8 on desktop, 12 on mobile) */}
-            <div className="col-span-12 lg:col-span-4 flex justify-center items-end py-6 lg:py-0 lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2 lg:h-[82vh] xl:h-[90vh] lg:w-[32%] max-w-[480px] z-10 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-              <div className="relative w-full h-[45vh] sm:h-[50vh] lg:h-full max-w-[320px] sm:max-w-[380px] lg:max-w-none mx-auto">
+              {/* Model Image wrapper */}
+              <div className="relative w-full h-[55vh] sm:h-[60vh] lg:h-full max-w-[380px] sm:max-w-[460px] lg:max-w-none mx-auto z-10 pb-0 mb-0">
                 <Image
-                  src="/images/fatima.png"
-                  alt="Fatima - Contestant"
+                  src="/images/misssomalipsd.png"
+                  alt="Miss Somali - Coronation"
                   fill
                   priority
-                  sizes="(max-w-768px) 100vw, 33vw"
-                  className="object-contain object-bottom hover:scale-103 transition-transform duration-500"
+                  sizes="(max-w-768px) 100vw, 50vw"
+                  className="object-contain object-bottom"
                 />
               </div>
             </div>
 
-            {/* Right Column: Spacer (Columns 9-12 on desktop, 12 on mobile) */}
-            <div className="col-span-12 lg:col-span-4" />
-
           </div>
         </div>
       </div>
-
-
-      {/* Scroll Indicator (dismissed on scroll) */}
-      <div
-        className={`absolute bottom-40 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
-          hasScrolled ? "opacity-0 pointer-events-none translate-y-4" : "opacity-100 pointer-events-auto"
-        } hidden lg:flex`}
-      >
-        <span className="text-[10px] font-semibold tracking-[0.05em] text-[#F5F0E8]/40 mb-2">Scroll</span>
-        <div className="w-[18px] h-7 border border-[#F5F0E8]/30 rounded-full flex justify-center pt-1.5 opacity-60">
-          <div className="w-[3px] h-[3px] bg-[#BF9200] rounded-full animate-scroll-wheel" />
-        </div>
-      </div>
-
     </section>
   );
 }

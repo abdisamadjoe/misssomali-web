@@ -51,13 +51,9 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-          scrolled
-            ? "bg-[#071E4A]/80 border-b border-[#BF9200]/25 py-3.5 backdrop-blur-md shadow-2xl shadow-black/30"
-            : "bg-transparent py-5 border-b border-transparent"
-        }`}
+        className="fixed top-0 left-0 w-full z-50 bg-[#1A0524]/85 border-b border-[#E8C97A]/25 py-2.5 backdrop-blur-xl transition-all duration-300 shadow-[0_4px_30px_rgba(26,5,36,0.25)]"
       >
-        <div className="grid-container">
+        <div className="w-full px-6 md:px-8 xl:px-12">
           <div className="grid-12 items-center">
             {/* Logo: Columns 1-3 on Desktop, 1-6 on Mobile */}
             <div className="col-span-6 lg:col-span-3 flex items-center">
@@ -65,26 +61,30 @@ export default function Navbar() {
                 <Image
                   src="/logo.png"
                   alt="Miss Somali Logo"
-                  width={150}
-                  height={45}
+                  width={140}
+                  height={40}
                   priority
-                  className="w-auto h-9 md:h-11 object-contain transition-transform duration-300 hover:scale-102"
+                  className="w-auto h-8 md:h-9 object-contain transition-transform duration-300 hover:scale-102"
                 />
               </Link>
             </div>
 
             {/* Nav Links: Columns 4-9 (Desktop) */}
-            <div className="hidden lg:flex lg:col-span-6 items-center justify-center space-x-8 xl:space-x-10">
+            <div className="hidden lg:flex lg:col-span-6 items-center justify-center space-x-2 xl:space-x-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => handleLinkClick(link.name)}
-                  className="relative py-2 text-[14px] font-medium tracking-[0.02em] leading-none text-white hover:text-[#BF9200] transition-colors duration-200 group"
+                  className={`relative px-3 py-1.5 text-[13px] font-semibold tracking-[0.02em] leading-none transition-all duration-300 rounded-full ${
+                    activeLink === link.name
+                      ? "text-[#E8C97A] bg-white/5"
+                      : "text-[#F5F0E8]/80 hover:text-white hover:bg-white/5"
+                  }`}
                 >
                   <span>{link.name}</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-[#BF9200] to-transparent shadow-[0_0_8px_#BF9200] transition-all duration-300 transform scale-x-0 group-hover:scale-x-100 ${
-                    activeLink === link.name ? "scale-x-100" : ""
+                  <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-[#E8C97A] rounded-full shadow-[0_0_10px_#E8C97A] transition-all duration-300 ${
+                    activeLink === link.name ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
                   }`} />
                 </a>
               ))}
@@ -95,7 +95,7 @@ export default function Navbar() {
               <a
                 href="#apply"
                 onClick={() => handleLinkClick("Apply")}
-                className="bg-gradient-to-r from-[#BF9200] to-[#D4A800] hover:from-[#D4A800] hover:to-[#BF9200] text-white px-7 py-3 rounded-none font-bold text-[14px] leading-none tracking-[0.02em] transition-all duration-300 shadow-[0_4px_14px_rgba(191,146,0,0.35)] hover:shadow-[0_6px_20px_rgba(191,146,0,0.55)] hover:-translate-y-0.5 active:translate-y-0 inline-block text-center"
+                className="relative bg-[linear-gradient(110deg,#E8C97A,45%,#F0D898,55%,#E8C97A)] bg-[length:200%_100%] animate-shimmer text-[#1A0524] px-5 py-2 rounded-full font-bold text-[13px] leading-none tracking-[0.02em] transition-all duration-300 shadow-[0_3px_15px_rgba(232,201,122,0.2)] hover:shadow-[0_6px_25px_rgba(232,201,122,0.35)] hover:-translate-y-0.5 active:translate-y-0 inline-block text-center border border-[#E8C97A]/20"
               >
                 Apply Now
               </a>
@@ -105,13 +105,13 @@ export default function Navbar() {
             <div className="col-span-6 lg:hidden flex items-center justify-end">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-white hover:text-[#BF9200] focus:outline-none z-50 p-2"
+                className="text-white hover:text-[#E8C97A] focus:outline-none z-50 p-2"
                 aria-label="Toggle navigation menu"
               >
                 <div className="w-6 h-5 relative flex flex-col justify-between">
                   <span
                     className={`w-full h-0.5 bg-white transition-all duration-300 rounded ${
-                      mobileMenuOpen ? "rotate-45 translate-y-2 bg-[#BF9200]" : ""
+                      mobileMenuOpen ? "rotate-45 translate-y-2 bg-[#E8C97A]" : ""
                     }`}
                   />
                   <span
@@ -121,7 +121,7 @@ export default function Navbar() {
                   />
                   <span
                     className={`w-full h-0.5 bg-white transition-all duration-300 rounded ${
-                      mobileMenuOpen ? "-rotate-45 -translate-y-2 bg-[#BF9200]" : ""
+                      mobileMenuOpen ? "-rotate-45 -translate-y-2 bg-[#E8C97A]" : ""
                     }`}
                   />
                 </div>
@@ -133,7 +133,7 @@ export default function Navbar() {
 
       {/* Full-Screen Overlay Menu (Mobile/Tablet) */}
       <div
-        className={`fixed inset-0 bg-gradient-to-b from-[#071E4A] to-[#0B2D6B] z-40 lg:hidden flex flex-col justify-between pt-28 pb-12 px-6 transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 bg-[#1A0524]/98 backdrop-blur-2xl z-40 lg:hidden flex flex-col justify-between pt-32 pb-12 px-6 transition-all duration-500 ease-in-out ${
           mobileMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-full pointer-events-none"
@@ -149,9 +149,9 @@ export default function Navbar() {
               style={{
                 transitionDelay: mobileMenuOpen ? `${idx * 0.05}s` : "0s",
               }}
-              className={`text-[14px] font-medium tracking-[0.02em] leading-none text-white hover:text-[#BF9200] transition-all duration-300 transform ${
+              className={`text-[14px] font-medium tracking-[0.02em] leading-none transition-all duration-300 transform ${
                 mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-              }`}
+              } ${activeLink === link.name ? "text-[#E8C97A]" : "text-white/80 hover:text-white"}`}
             >
               {link.name}
             </a>
@@ -168,7 +168,7 @@ export default function Navbar() {
           <a
             href="#apply"
             onClick={() => handleLinkClick("Apply")}
-            className="w-full max-w-xs bg-gradient-to-r from-[#BF9200] to-[#D4A800] text-white py-4 rounded-none font-bold text-[14px] leading-none tracking-[0.02em] text-center shadow-[0_4px_14px_rgba(191,146,0,0.3)] hover:shadow-[0_6px_20px_rgba(191,146,0,0.5)] transition-all duration-300"
+            className="w-full max-w-xs bg-[linear-gradient(110deg,#E8C97A,45%,#F0D898,55%,#E8C97A)] bg-[length:200%_100%] animate-shimmer text-[#1A0524] py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] text-center shadow-[0_4px_14px_rgba(232,201,122,0.3)] hover:shadow-[0_6px_20px_rgba(232,201,122,0.5)] transition-all duration-300"
           >
             Apply Now
           </a>
