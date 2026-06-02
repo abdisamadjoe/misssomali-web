@@ -72,7 +72,7 @@ export async function middleware(request: NextRequest) {
           }
         }
       }
-    } catch (e) {
+    } catch {
       // Ignore errors here
     }
   }

@@ -1,13 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth/server";
+import { NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    // Retrieve the session from Neon Auth using request headers
-    const session = await auth.getSession({
-      headers: request.headers,
-    });
+    // Retrieve the session from Neon Auth
+    const { data: session } = await auth.getSession();
 
     if (!session) {
       return NextResponse.json({ authenticated: false }, { status: 401 });

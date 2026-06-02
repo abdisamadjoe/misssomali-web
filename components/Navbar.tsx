@@ -51,7 +51,9 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full z-50 bg-[#071E4A]/70 py-3.5 backdrop-blur-xl"
+        className={`fixed top-0 left-0 w-full z-50 py-3.5 backdrop-blur-xl transition-all duration-300 ${
+          scrolled ? "bg-[#071E4A] shadow-md shadow-black/5" : "bg-[#071E4A]/70"
+        }`}
       >
         <div className="grid-container">
           <div className="grid-12 items-center">

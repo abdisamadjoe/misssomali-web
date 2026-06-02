@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, ArrowRight } from "lucide-react";
 
 const texts = {
   journeyLabel: "The Path to Glory",
@@ -83,7 +83,7 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    setTimeout(() => setIsMounted(true), 0);
     const targetDate = new Date("2026-08-25T20:00:00+03:00").getTime();
 
     const updateCountdown = () => {
@@ -174,7 +174,7 @@ export default function Home() {
                 {/* Impressive Accent Callout Quote */}
                 <div className="border-l-2 border-[#E8C97A] pl-5 py-1 mt-6 max-w-xl">
                   <p className="text-[16px] sm:text-[18px] font-semibold italic leading-[1.6] text-[#0D3A8A]">
-                    "One woman will be crowned Miss Somali. But every woman who steps forward changes what the world knows about us."
+                    &quot;One woman will be crowned Miss Somali. But every woman who steps forward changes what the world knows about us.&quot;
                   </p>
                 </div>
               </div>
