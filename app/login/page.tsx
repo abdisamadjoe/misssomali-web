@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +8,18 @@ import { authClient } from "@/lib/auth/client";
 import { LogIn, Loader2, AlertCircle, ShieldCheck, RefreshCw, MailCheck } from "lucide-react";
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex flex-col justify-center items-center">
+        <Loader2 className="animate-spin h-8 w-8 text-[#0B2D6B]" />
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
+  );
+}
+
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const errorParam = searchParams.get("error");

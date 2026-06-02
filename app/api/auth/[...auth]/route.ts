@@ -3,9 +3,12 @@ import { auth } from "@/lib/auth";
 
 const handler = auth.handler();
 
-export async function GET(request: NextRequest, context: any) {
+export async function GET(
+  request: NextRequest,
+  context: { params: Promise<Record<string, string[] | undefined>> }
+) {
   const resolvedParams = await context.params;
-  const arrayVal = resolvedParams ? (resolvedParams.auth || resolvedParams.path || resolvedParams.all) : [];
+  const arrayVal = resolvedParams ? (resolvedParams.auth || resolvedParams.path || resolvedParams.all || []) : [];
   const mockParams = {
     auth: arrayVal,
     path: arrayVal,
@@ -14,9 +17,12 @@ export async function GET(request: NextRequest, context: any) {
   return handler.GET(request, { params: Promise.resolve(mockParams) });
 }
 
-export async function POST(request: NextRequest, context: any) {
+export async function POST(
+  request: NextRequest,
+  context: { params: Promise<Record<string, string[] | undefined>> }
+) {
   const resolvedParams = await context.params;
-  const arrayVal = resolvedParams ? (resolvedParams.auth || resolvedParams.path || resolvedParams.all) : [];
+  const arrayVal = resolvedParams ? (resolvedParams.auth || resolvedParams.path || resolvedParams.all || []) : [];
   const mockParams = {
     auth: arrayVal,
     path: arrayVal,
