@@ -62,7 +62,8 @@ export default function RegisterPage() {
       router.push("/portal");
     } catch (err) {
       console.error("Registration page error:", err);
-      setErrorMessage("An unexpected error occurred. Please try again.");
+      const msg = err instanceof Error ? err.message : String(err);
+      setErrorMessage(msg || "An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -35,7 +35,8 @@ export default function LoginPage() {
       }
     } catch (err) {
       console.error("Login page error:", err);
-      setErrorMessage("An unexpected error occurred. Please try again.");
+      const msg = err instanceof Error ? err.message : String(err);
+      setErrorMessage(msg || "An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
