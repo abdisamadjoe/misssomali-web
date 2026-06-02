@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 
 const texts = {
   journeyLabel: "The Path to Glory",
@@ -268,57 +269,63 @@ export default function Home() {
         </section>
 
         {/* Grand Finale Event Section */}
-        <section id="grand-finale" className="bg-[#071E4A] py-28 border-b border-white/5">
-          <div className="grid-container">
-            <div className="grid-12 items-center gap-y-12 lg:gap-x-12">
+        <section id="grand-finale" className="bg-[#071E4A] py-28 border-b border-white/5 relative overflow-hidden">
+          {/* Subtle Background Glow/Gradient */}
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#0B2D6B]/50 to-transparent pointer-events-none" />
+          
+          <div className="grid-container relative z-10">
+            <div className="grid-12 items-center gap-y-16 lg:gap-x-12">
               
               {/* Left Column: Event Info */}
               <div className="col-span-12 lg:col-span-6 flex flex-col justify-center text-left items-start">
                 {/* Luxury Label Badge */}
-                <div className="mb-6">
-                  <span className="text-[#E8C97A] tracking-[0.08em] uppercase text-[11px] font-bold">
-                    The Grand Finale
+                <div className="mb-8 inline-flex items-center gap-2 bg-[#E8C97A]/10 border border-[#E8C97A]/30 px-4 py-1.5 rounded-full">
+                  <span className="w-2 h-2 rounded-full bg-[#E8C97A] animate-pulse" />
+                  <span className="text-[#E8C97A] tracking-[0.1em] uppercase text-[12px] font-bold">
+                    Featured Event
                   </span>
                 </div>
                 
                 {/* Clean Title */}
-                <h2 className="text-[38px] lg:text-[48px] font-extrabold text-white tracking-[-0.02em] leading-[1.15]">
-                  Miss Somali 2026 Grand Finale
+                <h2 className="text-[40px] sm:text-[48px] lg:text-[56px] font-black text-white tracking-[-0.02em] leading-[1.1] mb-6">
+                  Miss Somali 2026 <br className="hidden sm:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E8C97A] to-[#DDBE6F]">Grand Finale</span>
                 </h2>
-
-                {/* Luxury Divider */}
-                <div className="w-16 h-[2px] bg-[#E8C97A] my-6 rounded-full" />
                 
                 {/* Location & Date Details in Clean Text Row */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 my-6 text-[15px] sm:text-[16px] text-[#F5F0E8]/90 font-medium">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-[#E8C97A] text-[18px]">📍</span>
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 mb-8 text-[16px] text-[#F5F0E8] font-medium">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                      <MapPin className="text-[#E8C97A] w-5 h-5" />
+                    </div>
                     <span>Nairobi, Kenya</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-[#E8C97A] text-[18px]">📅</span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                      <Calendar className="text-[#E8C97A] w-5 h-5" />
+                    </div>
                     <span>25 August 2026</span>
                   </div>
                 </div>
                 
                 {/* Slogan Supporting Line */}
-                <p className="text-[15px] font-light text-[#F5F0E8]/70 leading-[1.7] max-w-xl">
-                  The night one woman is crowned Miss Somali 2026 in front of the world.
+                <p className="text-[17px] font-light text-[#F5F0E8]/75 leading-[1.7] max-w-lg mb-10">
+                  The crowning event of the year. Witness the culmination of grace, culture, and leadership as one extraordinary woman takes the global stage.
                 </p>
 
-                {/* Clean Countdown Timer */}
-                <div className="flex items-center gap-3 sm:gap-4 mt-8">
+                {/* Clean Countdown Timer (Solid Professional Look) */}
+                <div className="flex items-center gap-3 sm:gap-5 mb-10">
                   {[
                     { label: "Days", value: isMounted ? timeLeft.days : 0 },
                     { label: "Hours", value: isMounted ? timeLeft.hours : 0 },
                     { label: "Mins", value: isMounted ? timeLeft.minutes : 0 },
                     { label: "Secs", value: isMounted ? timeLeft.seconds : 0 }
                   ].map((item, idx) => (
-                    <div key={idx} className="flex flex-col items-center justify-center bg-white/5 border border-white/10 rounded-2xl p-3 sm:p-4 w-16 sm:w-20 md:w-24 aspect-square text-center">
-                      <span className="text-[22px] sm:text-[28px] md:text-[32px] font-bold text-[#E8C97A] font-mono tracking-tight">
+                    <div key={idx} className="flex flex-col items-center justify-center bg-[#0B2D6B] border border-[#0D3A8A] rounded-xl p-4 sm:p-5 w-20 sm:w-24 aspect-square text-center shadow-lg">
+                      <span className="text-[28px] sm:text-[36px] font-black text-white leading-none tracking-tighter mb-2">
                         {String(item.value).padStart(2, "0")}
                       </span>
-                      <span className="text-[9px] sm:text-[10px] tracking-widest text-[#F5F0E8]/50 uppercase font-semibold mt-1">
+                      <span className="text-[10px] sm:text-[11px] tracking-[0.15em] text-[#E8C97A] uppercase font-bold">
                         {item.label}
                       </span>
                     </div>
@@ -328,21 +335,24 @@ export default function Home() {
                 {/* Clean CTA Button */}
                 <a
                   href="#events"
-                  className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] px-8 py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] transition-colors duration-200 mt-8 inline-block text-center border border-[#E8C97A]/25"
+                  className="group inline-flex items-center gap-3 bg-[#E8C97A] hover:bg-[#F5F0E8] text-[#071E4A] px-8 py-4 rounded-full font-bold text-[15px] transition-all duration-300 shadow-[0_0_20px_rgba(232,201,122,0.2)] hover:shadow-[0_0_30px_rgba(232,201,122,0.4)]"
                 >
                   View Event Details
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </div>
 
               {/* Right Column: Event Image */}
               <div className="col-span-12 lg:col-span-6">
-                <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-md">
+                <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                  {/* Subtle inner shadow overlay */}
+                  <div className="absolute inset-0 border border-white/10 rounded-3xl z-10 pointer-events-none" />
                   <Image
                     src="/images/image1.jpeg"
                     alt="Miss Somali 2026 Grand Finale Event"
                     fill
                     sizes="(max-w-768px) 100vw, 50vw"
-                    className="object-cover"
+                    className="object-cover transform hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
