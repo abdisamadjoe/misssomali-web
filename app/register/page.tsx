@@ -58,21 +58,21 @@ export default function RegisterPage() {
       // Wait a short duration to ensure session cookie is registered by the browser
       await new Promise((resolve) => setTimeout(resolve, 600));
 
+      // Check if the session is active before calling the profile creation endpoint.
+      // If no active session, it means email verification is required.
+      const sessionResult = await authClient.getSession();
+      if (!sessionResult.data?.session) {
+        setVerificationSent(true);
+        setLoading(false);
+        return;
+      }
+
       // 2. Attempt to create the contestant profile in the database.
-      // If the session is not yet active (email verification pending), a 401 is expected.
       const profileRes = await fetch("/api/portal/profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fullName, phone, country }),
       });
-
-      if (profileRes.status === 401) {
-        // Session not active yet — email verification is required before sign-in.
-        // Show the verification screen; middleware will create the profile on first portal access.
-        setVerificationSent(true);
-        setLoading(false);
-        return;
-      }
 
       if (!profileRes.ok) {
         const errorText = await profileRes.text();
