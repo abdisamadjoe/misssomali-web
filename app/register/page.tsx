@@ -28,7 +28,6 @@ export default function RegisterPage() {
         email,
         password,
         name: fullName,
-        callbackURL: "/portal",
       });
 
       if (error) {
@@ -36,6 +35,9 @@ export default function RegisterPage() {
         setLoading(false);
         return;
       }
+
+      // Wait a short duration to ensure session cookie is registered by the browser
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       // 2. Create the contestant profile in the database via API route
       // We will perform a fetch POST to /api/portal/profile
@@ -52,8 +54,8 @@ export default function RegisterPage() {
       });
 
       if (!profileRes.ok) {
-        // Even if profiling API fails, we still want to redirect since they are authenticated
-        console.error("Failed to create profile database entry, middleware auto-fallback will run");
+        const errorText = await profileRes.text();
+        console.error("Failed to create profile database entry:", profileRes.status, errorText);
       }
 
       // Redirect to portal dashboard
