@@ -29,14 +29,20 @@ export default function LoginPage() {
       });
 
       if (error) {
-        setErrorMessage(error.message || "Invalid email or password.");
+        const msg = error.message === "Email not verified"
+          ? "Your email address is not verified. Please check your inbox for a verification link to activate your account."
+          : error.message || "Invalid email or password.";
+        setErrorMessage(msg);
       } else {
         router.push("/portal");
       }
     } catch (err) {
       console.error("Login page error:", err);
-      const msg = err instanceof Error ? err.message : String(err);
-      setErrorMessage(msg || "An unexpected error occurred. Please try again.");
+      const rawMsg = err instanceof Error ? err.message : String(err);
+      const msg = rawMsg === "Email not verified"
+        ? "Your email address is not verified. Please check your inbox for a verification link to activate your account."
+        : rawMsg || "An unexpected error occurred. Please try again.";
+      setErrorMessage(msg);
     } finally {
       setLoading(false);
     }

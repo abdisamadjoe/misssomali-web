@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { authClient } from "@/lib/auth/client";
-import { UserPlus, Loader2, AlertCircle } from "lucide-react";
+import { UserPlus, Loader2, AlertCircle, MailCheck } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -16,6 +16,7 @@ export default function RegisterPage() {
   const [country, setCountry] = useState("Somalia");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [verificationSent, setVerificationSent] = useState(false);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,43 +32,108 @@ export default function RegisterPage() {
       });
 
       if (error) {
-        setErrorMessage(error.message || "Failed to create account. Please try again.");
+        const errMsg = error.message || "";
+        // Better Auth returns this when email verification is required
+        if (
+          errMsg.toLowerCase().includes("email not verified") ||
+          errMsg.toLowerCase().includes("verification") ||
+          errMsg.toLowerCase().includes("verify your email")
+        ) {
+          setVerificationSent(true);
+          setLoading(false);
+          return;
+        }
+        setErrorMessage(errMsg || "Failed to create account. Please try again.");
         setLoading(false);
         return;
       }
 
       // Wait a short duration to ensure session cookie is registered by the browser
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 600));
 
-      // 2. Create the contestant profile in the database via API route
-      // We will perform a fetch POST to /api/portal/profile
+      // 2. Attempt to create the contestant profile in the database.
+      // If the session is not yet active (email verification pending), a 401 is expected.
       const profileRes = await fetch("/api/portal/profile", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          country,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, phone, country }),
       });
+
+      if (profileRes.status === 401) {
+        // Session not active yet — email verification is required before sign-in.
+        // Show the verification screen; middleware will create the profile on first portal access.
+        setVerificationSent(true);
+        setLoading(false);
+        return;
+      }
 
       if (!profileRes.ok) {
         const errorText = await profileRes.text();
         console.error("Failed to create profile database entry:", profileRes.status, errorText);
+        // Non-blocking: still redirect so the middleware fallback can pick it up
       }
 
       // Redirect to portal dashboard
       router.push("/portal");
     } catch (err) {
       console.error("Registration page error:", err);
-      const msg = err instanceof Error ? err.message : String(err);
-      setErrorMessage(msg || "An unexpected error occurred. Please try again.");
+      const rawMsg = err instanceof Error ? err.message : String(err);
+      if (
+        rawMsg.toLowerCase().includes("email not verified") ||
+        rawMsg.toLowerCase().includes("verification")
+      ) {
+        setVerificationSent(true);
+        setLoading(false);
+        return;
+      }
+      setErrorMessage(rawMsg || "An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
+  // ── Email verification pending screen ────────────────────────────────────
+  if (verificationSent) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
+          <Link href="/">
+            <div className="relative w-48 h-12 mb-6 cursor-pointer">
+              <Image
+                src="/logo.png"
+                alt="Miss Somali Logo"
+                fill
+                style={{ objectFit: "contain" }}
+                priority
+              />
+            </div>
+          </Link>
+        </div>
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-[#FFFFFF] py-10 px-4 border border-[#E8E8E8] shadow-lg rounded-xl sm:px-10 text-center">
+            <div className="flex justify-center mb-4">
+              <div className="bg-[#E8C97A]/20 rounded-full p-4">
+                <MailCheck className="h-10 w-10 text-[#071E4A]" />
+              </div>
+            </div>
+            <h3 className="text-xl font-extrabold text-[#071E4A] mb-2">Check your inbox</h3>
+            <p className="text-sm text-[#071E4A]/70 mb-6">
+              A verification link has been sent to{" "}
+              <span className="font-semibold text-[#071E4A]">{email}</span>.
+              <br />
+              Please verify your email address before signing in.
+            </p>
+            <Link
+              href="/login"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-[#071E4A] bg-[#E8C97A] hover:bg-[#F0D898] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0B2D6B]"
+            >
+              Go to Sign In
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
