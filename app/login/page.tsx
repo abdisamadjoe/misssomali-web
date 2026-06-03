@@ -140,32 +140,38 @@ function LoginContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
-        <Link href="/">
-          <div className="relative w-48 h-12 mb-6 cursor-pointer">
-            <Image
-              src="/logo.png"
-              alt="Miss Somali Logo"
-              fill
-              style={{ objectFit: "contain" }}
-              priority
-            />
-          </div>
-        </Link>
-        <h2 className="text-center text-3xl font-extrabold text-[#071E4A] tracking-tight">
-          Contestant Portal
-        </h2>
-        <p className="mt-2 text-center text-sm text-[#071E4A]/70">
-          Official Applicant & Contestant Area
-        </p>
+    <div className="min-h-screen bg-gradient-to-b from-[#0B2D6B] via-[#0D3A8A] to-[#071E4A] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background spotlights/glows */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#E8C97A]/10 blur-3xl rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#0D3A8A]/35 blur-3xl rounded-full" />
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-[#FFFFFF] py-8 px-4 border border-[#E8E8E8] shadow-lg rounded-xl sm:px-10">
-          
+      <div className="relative z-10 mx-4 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-10 px-6 sm:px-10 shadow-2xl rounded-2xl border border-gray-100 flex flex-col">
+          {/* Logo & Header block */}
+          <div className="flex flex-col items-center mb-8">
+            <Link href="/">
+              <div className="relative w-48 h-12 mb-4 cursor-pointer">
+                <Image
+                  src="/logo.png"
+                  alt="Miss Somali Logo"
+                  fill
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </div>
+            </Link>
+            <h2 className="text-center text-2xl font-extrabold text-[#071E4A] tracking-tight">
+              Welcome back
+            </h2>
+            <p className="mt-1 text-center text-sm text-[#071E4A]/70">
+              Sign in to continue to your account
+            </p>
+          </div>
+
           {errorParam === "noprofile" && (
-            <div className="mb-4 bg-amber-50 border-l-4 border-[#E8C97A] p-4 rounded-md">
+            <div className="mb-6 bg-amber-50 border-l-4 border-[#E8C97A] p-4 rounded-md">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <AlertCircle className="h-5 w-5 text-[#E8C97A]" aria-hidden="true" />
@@ -180,7 +186,7 @@ function LoginContent() {
           )}
 
           {errorMessage && (
-            <div className="mb-4 bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
+            <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <AlertCircle className="h-5 w-5 text-red-500" aria-hidden="true" />
@@ -193,7 +199,7 @@ function LoginContent() {
           )}
 
           {successMessage && (
-            <div className="mb-4 bg-green-50 border-l-4 border-green-500 p-4 rounded-md">
+            <div className="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-md">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <MailCheck className="h-5 w-5 text-green-500" aria-hidden="true" />
@@ -224,7 +230,7 @@ function LoginContent() {
                       required
                       value={otpCode}
                       onChange={(e) => setOtpCode(e.target.value)}
-                      className="appearance-none block w-full px-4 py-3 border border-[#E8E8E8] rounded-lg shadow-sm placeholder-[#071E4A]/30 focus:outline-none focus:ring-2 focus:ring-[#0B2D6B] focus:border-[#0B2D6B] text-center tracking-widest font-mono text-xl text-[#071E4A]"
+                      className="appearance-none block w-full px-4 py-3 border border-[#E8E8E8] rounded-lg shadow-sm placeholder-[#071E4A]/30 focus:outline-none focus:ring-2 focus:ring-[#E8C97A] focus:border-[#E8C97A] text-center tracking-widest font-mono text-xl text-[#071E4A]"
                       placeholder="123456"
                     />
                   </div>
@@ -276,7 +282,7 @@ function LoginContent() {
             </div>
           ) : (
             /* Standard Login Form */
-            <form className="space-y-6" onSubmit={handleLogin}>
+            <form className="space-y-5" onSubmit={handleLogin}>
               <div>
                 <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-[#071E4A]">
                   Email Address
@@ -290,8 +296,8 @@ function LoginContent() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2.5 border border-[#E8E8E8] rounded-lg shadow-sm placeholder-[#071E4A]/30 focus:outline-none focus:ring-2 focus:ring-[#0B2D6B] focus:border-[#0B2D6B] sm:text-sm text-[#071E4A]"
-                    placeholder="name@example.com"
+                    className="appearance-none block w-full px-4 py-3 border border-[#E8E8E8] rounded-lg shadow-sm placeholder-[#071E4A]/30 focus:outline-none focus:ring-2 focus:ring-[#E8C97A] focus:border-[#E8C97A] sm:text-sm text-[#071E4A]"
+                    placeholder="you@example.com"
                   />
                 </div>
               </div>
@@ -302,7 +308,7 @@ function LoginContent() {
                     Password
                   </label>
                 </div>
-                <div className="mt-1">
+                <div className="mt-1 relative">
                   <input
                     id="password"
                     name="password"
@@ -311,48 +317,50 @@ function LoginContent() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2.5 border border-[#E8E8E8] rounded-lg shadow-sm placeholder-[#071E4A]/30 focus:outline-none focus:ring-2 focus:ring-[#0B2D6B] focus:border-[#0B2D6B] sm:text-sm text-[#071E4A]"
-                    placeholder="••••••••"
+                    className="appearance-none block w-full px-4 py-3 border border-[#E8E8E8] rounded-lg shadow-sm placeholder-[#071E4A]/30 focus:outline-none focus:ring-2 focus:ring-[#E8C97A] focus:border-[#E8C97A] sm:text-sm text-[#071E4A]"
+                    placeholder="Enter your password"
                   />
+                </div>
+                <div className="flex justify-end mt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSuccessMessage("");
+                      setErrorMessage("Password reset is managed by the administrator. Please contact info@misssomali.org.");
+                    }}
+                    className="text-xs font-bold text-[#0B2D6B] hover:text-[#0B2D6B]/80 hover:underline transition-colors"
+                  >
+                    Forgot your password?
+                  </button>
                 </div>
               </div>
 
-              <div>
+              <div className="pt-2">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-[#071E4A] bg-[#E8C97A] hover:bg-[#F0D898] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0B2D6B] disabled:opacity-50"
+                  className="w-full flex justify-center items-center py-3.5 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-[#071E4A] bg-[#E8C97A] hover:bg-[#071E4A] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0B2D6B] disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? (
                     <Loader2 className="animate-spin h-5 w-5 mr-2" />
                   ) : (
                     <LogIn className="h-5 w-5 mr-2" />
                   )}
-                  Sign In to Portal
+                  Sign in
                 </button>
               </div>
             </form>
           )}
 
           {!showOtpField && (
-            <div className="mt-6">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-[#E8E8E8]" />
-                </div>
-                <div className="relative flex justify-center text-xs">
-                  <span className="px-2 bg-white text-[#071E4A]/60">New Applicant?</span>
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <Link
-                  href="/register"
-                  className="w-full flex justify-center py-3 px-4 border border-[#0B2D6B]/20 rounded-full shadow-sm text-sm font-semibold text-[#0B2D6B] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0B2D6B]"
-                >
-                  Apply Now - Create Account
-                </Link>
-              </div>
+            <div className="mt-8 pt-6 border-t border-[#E8E8E8] text-center text-sm text-[#071E4A]/70 font-normal">
+              <span>New here? </span>
+              <Link
+                href="/register"
+                className="font-bold text-[#0B2D6B] hover:text-[#0B2D6B]/80 hover:underline transition-colors"
+              >
+                Create an account
+              </Link>
             </div>
           )}
         </div>

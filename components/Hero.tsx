@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -43,12 +44,12 @@ export default function Hero() {
 
               {/* CTA Buttons */}
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full">
-                <a
-                  href="#apply"
+                <Link
+                  href="/portal"
                   className="w-full sm:w-auto bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] px-8 py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] transition-colors duration-200 inline-block text-center border border-[#E8C97A]/25"
                 >
                   Apply Now
-                </a>
+                </Link>
                 <a
                   href="#journey"
                   className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white/5 hover:bg-white/10 text-white px-8 py-4 rounded-full border border-white/10 transition-colors duration-200"

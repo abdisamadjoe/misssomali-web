@@ -5,6 +5,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const texts = {
   journeyLabel: "The Path to Glory",
@@ -452,7 +453,7 @@ export default function Home() {
                   </p>
                 </div>
                 <a
-                  href="#apply"
+                  href="#events"
                   className="inline-flex items-center space-x-2 text-[14px] font-bold tracking-[0.02em] leading-none text-[#E8C97A] hover:text-[#F0D898] transition-colors duration-200"
                 >
                   <span>{texts.featuredCTA}</span>
@@ -536,12 +537,12 @@ export default function Home() {
 
               {/* Right Column: Button */}
               <div className="col-span-12 md:col-span-4 lg:col-span-3 flex md:justify-end items-center mt-6 md:mt-0">
-                <a
-                  href="#apply"
+                <Link
+                  href="/portal"
                   className="bg-[#071E4A] hover:bg-[#0B2D6B] text-[#FFFFFF] px-10 py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] transition-all duration-300 shadow-md hover:shadow-lg inline-block text-center whitespace-nowrap"
                 >
                   Apply Now
-                </a>
+                </Link>
               </div>
             </div>
           </div>

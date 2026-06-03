@@ -94,13 +94,13 @@ export default function Navbar() {
 
             {/* CTA Button: Columns 10-12 (Desktop) */}
             <div className="hidden lg:flex lg:col-span-3 items-center justify-end">
-              <a
-                href="#apply"
+              <Link
+                href="/portal"
                 onClick={() => handleLinkClick("Apply")}
                 className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] px-5 py-2.5 rounded-full font-bold text-[13px] leading-none tracking-[0.02em] transition-colors duration-200 inline-block text-center border border-[#E8C97A]/20"
               >
                 Apply Now
-              </a>
+              </Link>
             </div>
 
             {/* Hamburger Icon: Columns 7-12 (Mobile/Tablet) */}
@@ -157,13 +157,13 @@ export default function Navbar() {
 
         {/* Gold CTA Button at Bottom */}
         <div className="flex justify-center">
-          <a
-            href="#apply"
+          <Link
+            href="/portal"
             onClick={() => handleLinkClick("Apply")}
             className="w-full max-w-xs bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] text-center transition-colors duration-200"
           >
             Apply Now
-          </a>
+          </Link>
         </div>
       </div>
     </>
