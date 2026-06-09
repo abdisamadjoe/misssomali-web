@@ -3,17 +3,8 @@
 import { useState, useEffect, useCallback, createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth/client";
-import {
-  LayoutDashboard,
-  FileText,
-  CheckCircle,
-  Image as ImageIcon,
-  Bell,
-  Calendar,
-  User,
-  Loader2
-} from "lucide-react";
-import { DashboardShell } from "@/components/dashboard/Layouts/DashboardShell";
+import { Loader2 } from "lucide-react";
+import { DashboardShell } from "@/components/dashboard-shell";
 
 interface UserProfileData {
   authenticated: boolean;
@@ -91,30 +82,15 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
 
   if (!profile) return null;
 
-  const navigation = [
-    { name: "Dashboard", href: "/portal", icon: LayoutDashboard },
-    { name: "Application Wizard", href: "/portal/application", icon: FileText },
-    { name: "Submission Status", href: "/portal/status", icon: CheckCircle },
-    { name: "Media Gallery", href: "/portal/media", icon: ImageIcon },
-    { name: "Inbox", href: "/portal/notifications", icon: Bell },
-    { name: "Events Calendar", href: "/portal/events", icon: Calendar },
-    { name: "Profile Settings", href: "/portal/profile", icon: User }
-  ];
-
   return (
     <PortalContext.Provider value={{ profile, refreshProfile: fetchProfile, loading }}>
       <DashboardShell
-        navigation={navigation}
+        section="portal"
         user={{
           name: profile.fullName,
           email: profile.email,
-          role: "contestant",
         }}
-        title="Contestant Portal"
-        subtitle="Track your application and event milestones"
         onSignOut={handleSignOut}
-        profileUrl="/portal/profile"
-        settingsUrl="/portal/profile"
       >
         {children}
       </DashboardShell>

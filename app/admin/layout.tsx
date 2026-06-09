@@ -3,18 +3,8 @@
 import { useState, useEffect, useCallback, createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth/client";
-import {
-  LayoutDashboard,
-  FileText,
-  Users,
-  Image as ImageIcon,
-  Calendar,
-  Bell,
-  Sliders,
-  History,
-  Loader2
-} from "lucide-react";
-import { DashboardShell } from "@/components/dashboard/Layouts/DashboardShell";
+import { Loader2 } from "lucide-react";
+import { DashboardShell } from "@/components/dashboard-shell";
 
 interface UserProfileData {
   authenticated: boolean;
@@ -92,31 +82,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (!profile) return null;
 
-  const navigation = [
-    { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-    { name: "Applications", href: "/admin/applications", icon: FileText },
-    { name: "Contestants", href: "/admin/contestants", icon: Users },
-    { name: "Media Gallery", href: "/admin/media", icon: ImageIcon },
-    { name: "Events Calendar", href: "/admin/events", icon: Calendar },
-    { name: "Broadcast Hub", href: "/admin/notifications", icon: Bell },
-    { name: "Audit Logs", href: "/admin/audit-logs", icon: History },
-    { name: "System Settings", href: "/admin/settings", icon: Sliders }
-  ];
-
   return (
     <AdminContext.Provider value={{ profile, refreshProfile: fetchProfile, loading }}>
       <DashboardShell
-        navigation={navigation}
+        section="admin"
         user={{
           name: profile.fullName,
           email: profile.email,
-          role: "admin",
         }}
-        title="Control Panel"
-        subtitle="Miss Somali Organization Administrator"
         onSignOut={handleSignOut}
-        profileUrl="/admin/settings"
-        settingsUrl="/admin/settings"
       >
         {children}
       </DashboardShell>
