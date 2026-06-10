@@ -260,10 +260,10 @@ export default function GrandFinaleSettingsPage() {
     <>
       <div className="mb-6">
         <h1 className="text-heading-5 font-bold text-dark dark:text-white flex items-center gap-2">
-          <Trophy className="h-6 w-6 text-[#E8C97A]" /> Grand Finale Configuration
+          <Trophy className="h-6 w-6 text-[#E8C97A]" /> Grand Finale Settings
         </h1>
         <p className="mt-1 text-sm text-dark-6">
-          Configure the single crowning ceremony details, countdown timer, and visibility settings.
+          Manage the official Grand Finale details, countdown date, event information, and visibility settings.
         </p>
       </div>
 
