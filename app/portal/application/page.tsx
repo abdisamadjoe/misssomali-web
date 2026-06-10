@@ -14,7 +14,19 @@ const applicationSchema = z.object({
   phone: z.string().min(5, "Phone number is required"),
   city: z.string().min(2, "City is required"),
   country: z.string().min(2, "Country is required"),
-  dateOfBirth: z.string().min(10, "Valid date of birth is required"),
+  dateOfBirth: z.string().min(10, "Valid date of birth is required").refine((val) => {
+    if (!val) return false;
+    const dob = new Date(val);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+    return age >= 18;
+  }, {
+    message: "You must be at least 18 years old to apply",
+  }),
   educationLevel: z.string().min(2, "Education level is required"),
   occupation: z.string().min(2, "Occupation is required"),
   height: z.string().min(1, "Height is required"),
@@ -381,8 +393,8 @@ export default function ApplicationPage() {
                   <label className="mb-2 block text-body-sm font-medium">Full Name</label>
                   <input
                     {...register("fullName")}
-                    placeholder="Your complete legal name"
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
+                    placeholder="Enter Your Full name"
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
                   />
                   {errors.fullName && <p className="text-red text-xs mt-1">{errors.fullName.message}</p>}
                 </div>
@@ -391,8 +403,8 @@ export default function ApplicationPage() {
                   <label className="mb-2 block text-body-sm font-medium">Phone Number</label>
                   <input
                     {...register("phone")}
-                    placeholder="+252..."
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
+                    placeholder="+254..."
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
                   />
                   {errors.phone && <p className="text-red text-xs mt-1">{errors.phone.message}</p>}
                 </div>
@@ -401,8 +413,8 @@ export default function ApplicationPage() {
                   <label className="mb-2 block text-body-sm font-medium">City</label>
                   <input
                     {...register("city")}
-                    placeholder="Mogadishu"
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
+                    placeholder="Nairobi"
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
                   />
                   {errors.city && <p className="text-red text-xs mt-1">{errors.city.message}</p>}
                 </div>
@@ -411,8 +423,8 @@ export default function ApplicationPage() {
                   <label className="mb-2 block text-body-sm font-medium">Country</label>
                   <input
                     {...register("country")}
-                    placeholder="Somalia"
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
+                    placeholder="Kenya"
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
                   />
                   {errors.country && <p className="text-red text-xs mt-1">{errors.country.message}</p>}
                 </div>
@@ -422,7 +434,7 @@ export default function ApplicationPage() {
                   <input
                     type="date"
                     {...register("dateOfBirth")}
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
                   />
                   {errors.dateOfBirth && <p className="text-red text-xs mt-1">{errors.dateOfBirth.message}</p>}
                 </div>
@@ -437,53 +449,122 @@ export default function ApplicationPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="mb-2 block text-body-sm font-medium">Education Level</label>
-                  <input
+                  <select
                     {...register("educationLevel")}
-                    placeholder="e.g. Bachelor's Degree"
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
-                  />
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
+                  >
+                    <option value="">Select Education Level</option>
+                    <option value="High School Diploma">High School Diploma</option>
+                    <option value="Associate Degree">Associate Degree</option>
+                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                    <option value="Master's Degree">Master's Degree</option>
+                    <option value="Doctorate / PhD">Doctorate / PhD</option>
+                    <option value="Other">Other</option>
+                  </select>
                   {errors.educationLevel && <p className="text-red text-xs mt-1">{errors.educationLevel.message}</p>}
                 </div>
 
                 <div>
                   <label className="mb-2 block text-body-sm font-medium">Current Occupation</label>
-                  <input
+                  <select
                     {...register("occupation")}
-                    placeholder="e.g. Student / Designer"
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
-                  />
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
+                  >
+                    <option value="">Select Occupation</option>
+                    <option value="Student">Student</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Entrepreneur">Entrepreneur</option>
+                    <option value="Model">Model</option>
+                    <option value="Artist">Artist</option>
+                    <option value="Teacher / Educator">Teacher / Educator</option>
+                    <option value="Nurse / Health Professional">Nurse / Health Professional</option>
+                    <option value="Software Developer / IT">Software Developer / IT</option>
+                    <option value="Marketing Professional">Marketing Professional</option>
+                    <option value="Other">Other</option>
+                  </select>
                   {errors.occupation && <p className="text-red text-xs mt-1">{errors.occupation.message}</p>}
                 </div>
 
-                <div>
+                <div className="col-span-1 md:col-span-2">
                   <label className="mb-2 block text-body-sm font-medium">Height (cm)</label>
-                  <input
-                    type="number"
-                    step="0.1"
+                  <select
                     {...register("height")}
-                    placeholder="175"
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
-                  />
+                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
+                  >
+                    <option value="">Select Height</option>
+                    {Array.from({ length: 51 }, (_, i) => 150 + i).map(h => (
+                      <option key={h} value={h}>{h} cm</option>
+                    ))}
+                  </select>
                   {errors.height && <p className="text-red text-xs mt-1">{errors.height.message}</p>}
                 </div>
 
-                <div>
-                  <label className="mb-2 block text-body-sm font-medium">Languages Spoken</label>
-                  <input
-                    {...register("languages")}
-                    placeholder="e.g. Somali, English, Arabic"
-                    className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
-                  />
+                <div className="col-span-1 md:col-span-2">
+                  <label className="mb-3 block text-body-sm font-semibold text-dark dark:text-white">Languages Spoken (Select all that apply)</label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 rounded-lg border border-stroke bg-gray-2 dark:border-dark-3 dark:bg-dark-2">
+                    {["Somali", "English", "Arabic", "Kiswahili", "Italian", "French"].map(lang => {
+                      const currentLangs = (watch("languages") || "").split(", ").filter(Boolean);
+                      const isChecked = currentLangs.includes(lang);
+                      return (
+                        <label key={lang} className="flex items-center gap-2.5 text-sm font-medium cursor-pointer text-dark dark:text-white">
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) => {
+                              let next;
+                              if (e.target.checked) {
+                                next = [...currentLangs, lang];
+                              } else {
+                                next = currentLangs.filter(l => l !== lang);
+                              }
+                              setValue("languages", next.join(", "));
+                            }}
+                            className="h-4 w-4 rounded border-stroke text-primary focus:ring-primary dark:border-dark-3 dark:bg-dark-2"
+                          />
+                          {lang}
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="col-span-1 md:col-span-2">
-                  <label className="mb-2 block text-body-sm font-medium">Special Skills / Talent</label>
-                  <textarea
-                    {...register("skills")}
-                    placeholder="Describe any special talents, traditional skills, or advocacy hobbies"
-                    rows={4}
-                    className="w-full rounded-lg border border-stroke bg-gray-2 p-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2"
-                  />
+                  <label className="mb-3 block text-body-sm font-semibold text-dark dark:text-white">Special Skills / Talent (Select all that apply)</label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 rounded-lg border border-stroke bg-gray-2 dark:border-dark-3 dark:bg-dark-2">
+                    {[
+                      "Public Speaking",
+                      "Traditional Dancing",
+                      "Poetry",
+                      "Writing",
+                      "Painting",
+                      "Singing",
+                      "Acting",
+                      "Styling",
+                      "Community Advocacy"
+                    ].map(skill => {
+                      const currentSkills = (watch("skills") || "").split(", ").filter(Boolean);
+                      const isChecked = currentSkills.includes(skill);
+                      return (
+                        <label key={skill} className="flex items-center gap-2.5 text-sm font-medium cursor-pointer text-dark dark:text-white">
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) => {
+                              let next;
+                              if (e.target.checked) {
+                                next = [...currentSkills, skill];
+                              } else {
+                                next = currentSkills.filter(s => s !== skill);
+                              }
+                              setValue("skills", next.join(", "));
+                            }}
+                            className="h-4 w-4 rounded border-stroke text-primary focus:ring-primary dark:border-dark-3 dark:bg-dark-2"
+                          />
+                          {skill}
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
@@ -636,54 +717,69 @@ export default function ApplicationPage() {
           {activeStep === 4 && (
             <div className="rounded-[10px] border border-stroke bg-white p-7 shadow-1 dark:border-dark-3 dark:bg-gray-dark space-y-6">
               <h2 className="text-base font-bold text-dark dark:text-white">Platform Information Review</h2>
-              <div className="rounded-xl bg-gray-2 p-5 dark:bg-dark-2 space-y-4 text-sm">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Full Name</span>
-                  <p className="font-semibold text-dark dark:text-white">{formValues.fullName || "—"}</p>
+              <div className="rounded-xl bg-gray-2 p-6 dark:bg-dark-2 space-y-5 text-sm">
+                <div className="border-b border-stroke pb-3 dark:border-dark-3">
+                  <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Full Name</span>
+                  <p className="font-semibold text-dark dark:text-white text-base">{formValues.fullName || "—"}</p>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-stroke pb-3 dark:border-dark-3">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Phone</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Phone</span>
                     <p className="font-semibold text-dark dark:text-white">{formValues.phone || "—"}</p>
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Location</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Location</span>
                     <p className="font-semibold text-dark dark:text-white">
                       {formValues.city && formValues.country ? `${formValues.city}, ${formValues.country}` : "—"}
                     </p>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4">
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-b border-stroke pb-3 dark:border-dark-3">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Education</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Education</span>
                     <p className="font-semibold text-dark dark:text-white">{formValues.educationLevel || "—"}</p>
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Occupation</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Occupation</span>
                     <p className="font-semibold text-dark dark:text-white">{formValues.occupation || "—"}</p>
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Height</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Height</span>
                     <p className="font-semibold text-dark dark:text-white">{formValues.height ? `${formValues.height} cm` : "—"}</p>
                   </div>
                 </div>
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Motivation Statement</span>
-                  <p className="font-medium text-dark/95 dark:text-white/95 leading-relaxed mt-1">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-stroke pb-3 dark:border-dark-3">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Languages Spoken</span>
+                    <p className="font-semibold text-dark dark:text-white">{formValues.languages || "—"}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Special Skills / Talent</span>
+                    <p className="font-semibold text-dark dark:text-white">{formValues.skills || "—"}</p>
+                  </div>
+                </div>
+
+                <div className="border-b border-stroke pb-3 dark:border-dark-3">
+                  <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-1">Motivation Statement</span>
+                  <p className="font-medium text-dark/90 dark:text-white/90 leading-relaxed">
                     {formValues.motivationWhy || "—"}
                   </p>
                 </div>
+
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-dark-5">Photos Uploaded</span>
-                  <div className="flex gap-4 mt-2">
-                    <span className={`px-2.5 py-0.5 rounded-full border text-xs font-bold ${
+                  <span className="text-xs font-bold uppercase tracking-wider text-dark-5 block mb-2">Photos Uploaded</span>
+                  <div className="flex flex-wrap gap-4">
+                    <span className={`px-3 py-1 rounded-full border text-xs font-bold ${
                       photos.some(p => p.type === "profile") 
                         ? "bg-green/10 text-green border-green/20" 
                         : "bg-red/10 text-red border-red/20"
                     }`}>
                       Portrait Photo: {photos.some(p => p.type === "profile") ? "Uploaded" : "Missing"}
                     </span>
-                    <span className={`px-2.5 py-0.5 rounded-full border text-xs font-bold ${
+                    <span className={`px-3 py-1 rounded-full border text-xs font-bold ${
                       photos.some(p => p.type === "full_body") 
                         ? "bg-green/10 text-green border-green/20" 
                         : "bg-red/10 text-red border-red/20"
