@@ -130,6 +130,7 @@ model ContestantPhoto {
   contestantId String
   contestant   UserProfile @relation(fields: [contestantId], references: [id], onDelete: Cascade)
   url          String
+  publicId     String?
   type         PhotoType
   uploadedAt   DateTime    @default(now())
 

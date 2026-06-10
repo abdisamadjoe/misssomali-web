@@ -6,9 +6,41 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV_DATA } from "./data";
-import { ArrowLeftIcon, ChevronUp } from "./icons";
+import { ArrowLeftIcon, ChevronUp, HomeIcon, User, Alphabet, Table } from "./icons";
 import { MenuItem } from "./menu-item";
 import { useSidebarContext } from "./sidebar-context";
+
+const PORTAL_NAV_DATA = [
+  {
+    label: "MAIN MENU",
+    items: [
+      {
+        title: "Dashboard",
+        url: "/",
+        icon: HomeIcon,
+        items: [],
+      },
+      {
+        title: "Application",
+        url: "/application",
+        icon: Alphabet,
+        items: [],
+      },
+      {
+        title: "Status",
+        url: "/status",
+        icon: Table,
+        items: [],
+      },
+      {
+        title: "Profile",
+        url: "/profile",
+        icon: User,
+        items: [],
+      },
+    ],
+  },
+];
 
 type SidebarProps = {
   routePrefix: "/admin" | "/portal";
@@ -26,6 +58,7 @@ export function Sidebar({ routePrefix }: SidebarProps) {
   const pathname = usePathname();
   const { setIsOpen, isOpen, isMobile, toggleSidebar } = useSidebarContext();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const navData = routePrefix === "/portal" ? PORTAL_NAV_DATA : NAV_DATA;
 
   const toggleExpanded = (title: string) => {
     setExpandedItems((prev) => (prev.includes(title) ? [] : [title]));
@@ -38,7 +71,7 @@ export function Sidebar({ routePrefix }: SidebarProps) {
 
   useEffect(() => {
     // Keep collapsible open, when it's subpage is active
-    NAV_DATA.some((section) => {
+    navData.some((section) => {
       return section.items.some((item) => {
         return item.items.some((subItem) => {
           if (withPrefix(routePrefix, subItem.url) === pathname) {
@@ -52,7 +85,7 @@ export function Sidebar({ routePrefix }: SidebarProps) {
         });
       });
     });
-  }, [pathname, routePrefix]);
+  }, [pathname, routePrefix, navData]);
 
   return (
     <>
@@ -99,7 +132,7 @@ export function Sidebar({ routePrefix }: SidebarProps) {
 
           {/* Navigation */}
           <div className="custom-scrollbar mt-6 flex-1 overflow-y-auto pr-3 min-[850px]:mt-10">
-            {NAV_DATA.map((section) => (
+            {navData.map((section) => (
               <div key={section.label} className="mb-6">
                 <h2 className="mb-5 text-sm font-medium text-dark-4 dark:text-dark-6">
                   {section.label}

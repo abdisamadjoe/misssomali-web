@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function GET() {
   try {
@@ -50,7 +57,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Application is submitted. Media modifications locked." }, { status: 400 });
     }
 
-    const { url, type } = await request.json();
+    const { url, publicId, type } = await request.json();
 
     // If type is profile or full_body, demote existing ones to gallery to maintain uniqueness
     if (type === "profile" || type === "full_body") {
@@ -69,6 +76,7 @@ export async function POST(request: NextRequest) {
       data: {
         contestantId: profile.id,
         url,
+        publicId,
         type
       }
     });
@@ -106,6 +114,22 @@ export async function DELETE(request: NextRequest) {
 
     if (!photoId) {
       return NextResponse.json({ error: "Photo ID required" }, { status: 400 });
+    }
+
+    // Find the photo first to retrieve its public_id for Cloudinary deletion
+    const photo = await prisma.contestantPhoto.findUnique({
+      where: {
+        id: photoId,
+        contestantId: profile.id
+      }
+    });
+
+    if (photo && photo.publicId) {
+      try {
+        await cloudinary.uploader.destroy(photo.publicId);
+      } catch (err) {
+        console.error("Failed to delete image from Cloudinary:", err);
+      }
     }
 
     await prisma.contestantPhoto.delete({
