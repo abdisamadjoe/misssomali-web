@@ -89,13 +89,26 @@ function LoginContent() {
 
       if (error) {
         setErrorMessage(getAuthMessage(error, "Invalid email or password."));
+        setLoading(false);
         return;
       }
 
-      router.push("/auth/callback");
+      const roleResponse = await fetch("/api/auth/role", {
+        cache: "no-store",
+      });
+
+      if (roleResponse.ok) {
+        const data = await roleResponse.json();
+        if (data.role === "admin") {
+          router.push("/admin");
+        } else {
+          router.push("/portal");
+        }
+      } else {
+        router.push("/portal");
+      }
     } catch (error) {
       setErrorMessage(getAuthMessage(error, "Unable to sign in right now."));
-    } finally {
       setLoading(false);
     }
   }

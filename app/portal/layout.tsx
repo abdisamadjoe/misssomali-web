@@ -73,9 +73,8 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-2 flex flex-col justify-center items-center dark:bg-[#020d1a]">
-        <Loader2 className="animate-spin h-10 w-10 text-primary mb-4" />
-        <p className="text-sm font-semibold text-dark-5">Loading contestant portal...</p>
+      <div className="min-h-screen flex items-center justify-center bg-gray-2 dark:bg-[#020d1a]">
+        <Loader2 className="animate-spin h-8 w-8 text-primary" />
       </div>
     );
   }
