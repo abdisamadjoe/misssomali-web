@@ -110,8 +110,14 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-2 px-4 py-10 text-dark">
-      <section className="w-full max-w-[480px] rounded-[10px] border border-stroke bg-white p-7 shadow-1">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-[#0B2D6B] via-[#0D3A8A] to-[#071E4A] px-4 py-10 text-dark">
+      {/* Background Spotlights & Grid */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#071E4A_95%)] z-10" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-35 z-15" />
+      </div>
+
+      <section className="relative z-10 w-full max-w-[480px] rounded-[10px] border border-stroke bg-white p-7 shadow-1">
         <div className="mb-8 text-center">
           <Link
             href="/"
