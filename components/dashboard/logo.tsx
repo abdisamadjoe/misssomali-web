@@ -1,26 +1,16 @@
-import darkLogo from "@/components/dashboard/assets/logos/dark.svg";
-import logo from "@/components/dashboard/assets/logos/main.svg";
 import Image from "next/image";
 
 export function Logo() {
   return (
-    <div className="relative h-8 max-w-[10.847rem]">
+    <div className="flex items-center">
       <Image
-        src={logo}
-        fill
-        className="dark:hidden"
-        alt="NextAdmin logo"
-        role="presentation"
+        src="/logo.png"
+        width={140}
+        height={56}
+        className="object-contain"
+        alt="Miss Somali logo"
         quality={100}
-      />
-
-      <Image
-        src={darkLogo}
-        fill
-        className="hidden dark:block"
-        alt="NextAdmin logo"
-        role="presentation"
-        quality={100}
+        priority
       />
     </div>
   );
