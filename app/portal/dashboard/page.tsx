@@ -48,8 +48,8 @@ export default function PortalDashboard() {
   }
 
   // Calculate completion percentage and steps status
-  const isSubmitted = data?.isSubmitted || false;
   const status = data?.status || "draft";
+  const isSubmitted = status !== "draft";
   const updatedAt = data?.updatedAt ? new Date(data.updatedAt) : null;
 
   const hasPersonalInfo = !!(data?.formData?.personalInfo?.fullName && data?.formData?.personalInfo?.phone);
@@ -79,11 +79,16 @@ export default function PortalDashboard() {
           message: "Almost done, complete your submission.",
         };
       case "submitted":
-      case "pending":
         return {
           label: "Submitted",
           color: "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800",
           message: "Your application is successfully submitted and queued for review.",
+        };
+      case "pending":
+        return {
+          label: "Pending",
+          color: "bg-neutral-100 text-neutral-800 border-neutral-200 dark:bg-neutral-900/30 dark:text-neutral-300 dark:border-neutral-800",
+          message: "Your application is pending review.",
         };
       case "under_review":
         return {
@@ -229,8 +234,8 @@ export default function PortalDashboard() {
                   <Eye className="h-4 w-4" />
                   View Timeline Status
                 </Link>
-                <div className="rounded-lg bg-gray-2 p-3 text-xs text-dark-5 text-center dark:bg-dark-2">
-                  🔒 Locked for Editing
+                <div className="rounded-lg bg-gray-2 p-3 text-xs text-dark-5 text-center dark:bg-dark-2 font-semibold">
+                  🔒 Application Submitted (Locked)
                 </div>
               </div>
             ) : (
@@ -239,7 +244,7 @@ export default function PortalDashboard() {
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary hover:bg-opacity-90 text-white py-3 text-sm font-bold transition-all shadow-md"
               >
                 <FileText className="h-4 w-4" />
-                {progressPercent > 0 ? "Continue Application" : "Start Application"}
+                {data === null ? "Start Application" : "Continue Application"}
               </Link>
             )}
           </div>

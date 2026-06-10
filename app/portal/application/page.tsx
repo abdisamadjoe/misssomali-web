@@ -73,25 +73,46 @@ export default function ApplicationPage() {
       try {
         const res = await fetch("/api/portal/application");
         if (res.ok) {
-          const data = await res.json();
+          let data = await res.json();
+
+          if (!data) {
+            // No draft exists! The user clicked "Start Application" or first-time load.
+            // Let's create a new application in DRAFT state.
+            const createRes = await fetch("/api/portal/application", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({}),
+            });
+            if (createRes.ok) {
+              const createdData = await createRes.json();
+              // Load the newly created draft mapping details from a fresh GET query
+              const refetchRes = await fetch("/api/portal/application");
+              if (refetchRes.ok) {
+                data = await refetchRes.json();
+              } else {
+                data = createdData;
+              }
+            }
+          }
+
           if (data) {
-            setIsSubmitted(data.isSubmitted);
+            setIsSubmitted(data.status !== "draft");
             setPhotos(data.photos || []);
 
-            // Set simple attributes
-            setValue("fullName", data.formData?.personalInfo?.fullName || "");
-            setValue("phone", data.formData?.personalInfo?.phone || "");
-            setValue("city", data.formData?.personalInfo?.city || data.city || "");
-            setValue("country", data.formData?.personalInfo?.country || data.country || "Somalia");
+            // Set simple attributes directly from returned database columns
+            setValue("fullName", data.fullName || "");
+            setValue("phone", data.phone || "");
+            setValue("city", data.city || "");
+            setValue("country", data.country || "Somalia");
             setValue("dateOfBirth", data.dateOfBirth ? data.dateOfBirth.split("T")[0] : "");
-            setValue("educationLevel", data.formData?.backgroundInfo?.educationLevel || data.educationLevel || "");
-            setValue("occupation", data.formData?.backgroundInfo?.occupation || data.occupation || "");
-            setValue("height", data.formData?.backgroundInfo?.height || (data.height ? data.height.toString() : ""));
-            setValue("skills", data.formData?.backgroundInfo?.skills || "");
-            setValue("languages", data.formData?.backgroundInfo?.languages || "");
-            setValue("motivationWhy", data.formData?.motivation || "");
-            setValue("personalStory", data.formData?.achievements?.personalStory || "");
-            setValue("goals", data.formData?.achievements?.goals || "");
+            setValue("educationLevel", data.educationLevel || "");
+            setValue("occupation", data.occupation || "");
+            setValue("height", data.height ? data.height.toString() : "");
+            setValue("skills", data.skills || "");
+            setValue("languages", data.languages || "");
+            setValue("motivationWhy", data.motivationWhy || "");
+            setValue("personalStory", data.personalStory || "");
+            setValue("goals", data.goals || "");
             setValue("bio", data.bio || "");
           }
         }
@@ -242,10 +263,24 @@ export default function ApplicationPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/portal/application", {
+      // Step 1: Save final draft details first
+      const saveRes = await fetch("/api/portal/application", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+      });
+
+      if (!saveRes.ok) {
+        const err = await saveRes.json();
+        alert(err.error || "Failed to save final updates before submission.");
+        setSubmitting(false);
+        return;
+      }
+
+      // Step 2: Finalize the lock and change status to SUBMITTED
+      const res = await fetch("/api/portal/application/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
       });
 
       if (res.ok) {
