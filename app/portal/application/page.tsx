@@ -150,7 +150,7 @@ export default function ApplicationPage() {
       setAutoSaving(true);
       try {
         await fetch("/api/portal/application", {
-          method: "POST",
+          method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formValues),
         });
