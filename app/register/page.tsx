@@ -132,16 +132,9 @@ export default function RegisterPage() {
 
       <section className="relative z-10 w-full max-w-[480px] rounded-[10px] border border-stroke bg-white p-7 shadow-1">
         <div className="mb-8 text-center">
-          <Link
-            href="/"
-            className="mb-6 inline-flex items-center justify-center rounded-lg border border-stroke bg-gray-1 px-4 py-2 text-sm font-bold text-dark"
-          >
-            Miss Somali Platform
-          </Link>
-
           <h1 className="text-heading-6 font-bold text-dark">Create account</h1>
           <p className="mt-2 text-body-sm font-medium text-dark-5">
-            Start your dashboard workspace.
+            Apply or Manage your application.
           </p>
         </div>
 
