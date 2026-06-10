@@ -3,6 +3,7 @@
 import { SearchIcon } from "@/components/dashboard/assets/icons";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSidebarContext } from "../sidebar/sidebar-context";
 import { MenuIcon } from "./icons";
 import { Notification } from "./notification";
@@ -27,6 +28,8 @@ export function Header({
   settingsUrl,
 }: HeaderProps) {
   const { toggleSidebar, isMobile } = useSidebarContext();
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
 
   return (
     <header className="border-stroke shadow-1 dark:border-stroke-dark dark:bg-gray-dark sticky top-0 z-30 flex items-center justify-between border-b bg-white px-4 py-5 md:px-5 2xl:px-10">
@@ -55,7 +58,9 @@ export function Header({
         <h1 className="text-heading-5 text-dark mb-0.5 font-bold dark:text-white">
           Dashboard
         </h1>
-        <p className="font-medium">Contestant Application Portal</p>
+        <p className="font-medium">
+          {isAdmin ? "Admin Portal" : "Contestant Application Portal"}
+        </p>
       </div>
 
       <div className="2xsm:gap-4 flex flex-1 items-center justify-end gap-2">
