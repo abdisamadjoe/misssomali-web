@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, ArrowLeft, ArrowRight, Save, Lock, Upload, Image as ImageIcon, CheckCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import flatpickr from "flatpickr";
 
 // Form validation schema
 const applicationSchema = z.object({
@@ -158,6 +159,35 @@ export default function ApplicationPage() {
 
     return () => clearTimeout(timer);
   }, [formValues, isSubmitted, initialLoading]);
+
+  // Initialize flatpickr on Date of Birth field
+  useEffect(() => {
+    if (initialLoading || activeStep !== 0) return;
+
+    // Calculate maximum date allowed (18 years ago today)
+    const today = new Date();
+    const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+    const fp = flatpickr("#date-of-birth-picker", {
+      mode: "single",
+      dateFormat: "Y-m-d",
+      maxDate: maxDate,
+      defaultDate: watch("dateOfBirth") || undefined,
+      onChange: (selectedDates, dateStr) => {
+        setValue("dateOfBirth", dateStr, { shouldValidate: true, shouldDirty: true });
+      },
+    });
+
+    return () => {
+      if (fp) {
+        if (Array.isArray(fp)) {
+          fp.forEach((instance) => instance.destroy());
+        } else {
+          fp.destroy();
+        }
+      }
+    };
+  }, [initialLoading, activeStep, setValue, watch]);
 
   // Photo reader helper
   function readFileAsDataURL(file: File) {
@@ -421,18 +451,22 @@ export default function ApplicationPage() {
 
                 <div>
                   <label className="mb-2 block text-body-sm font-medium">Country</label>
-                  <input
+                  <select
                     {...register("country")}
-                    placeholder="Kenya"
                     className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
-                  />
+                  >
+                    <option value="Somalia">Somalia</option>
+                    <option value="Kenya">Kenya</option>
+                  </select>
                   {errors.country && <p className="text-red text-xs mt-1">{errors.country.message}</p>}
                 </div>
 
                 <div className="col-span-1 md:col-span-2">
                   <label className="mb-2 block text-body-sm font-medium">Date of Birth</label>
                   <input
-                    type="date"
+                    id="date-of-birth-picker"
+                    type="text"
+                    placeholder="Select Date of Birth"
                     {...register("dateOfBirth")}
                     className="h-12 w-full rounded-lg border border-stroke bg-gray-2 px-4 text-sm outline-none focus:border-primary dark:border-dark-3 dark:bg-dark-2 text-dark dark:text-white"
                   />
