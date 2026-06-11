@@ -144,7 +144,7 @@ export default function FeaturedEvent() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative aspect-[16/9] w-full max-w-[580px] rounded-[24px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10 bg-[#071E4A]/30 backdrop-blur-sm group"
+                className="relative aspect-[16/9] w-full max-w-[700px] rounded-[24px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10 bg-[#071E4A]/30 backdrop-blur-sm group"
               >
                 {/* Glowing hover light overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#E8C97A]/0 via-[#E8C97A]/5 to-[#E8C97A]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-20" />
