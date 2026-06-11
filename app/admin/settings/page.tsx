@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Loader2, Settings, User, Save, CheckCircle2 } from "lucide-react";
+import { Loader2, Settings, User, Check, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -212,13 +212,13 @@ export default function SettingsPage() {
             </div>
 
             <div className="mt-8 flex items-center gap-4">
-              <Button type="submit" disabled={saving} className="flex items-center gap-2">
+              <Button type="submit" disabled={saving} className="flex items-center gap-1.5 font-bold">
                 {saving ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  <Save className="h-4 w-4" />
+                  <Check className="h-4 w-4" />
                 )}
-                Save Settings
+                Save Changes
               </Button>
               {successMsg && (
                 <span className="flex items-center gap-1.5 text-sm font-medium text-emerald-600">

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Loader2, User, Phone, MapPin, Mail, Save, CheckCircle, Camera } from "lucide-react";
+import { Loader2, User, Phone, MapPin, Mail, Check, CheckCircle, Camera } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { usePortal } from "../layout";
+import { Button } from "@/components/ui/button";
 
 type ProfileData = {
   fullName: string;
@@ -342,10 +343,10 @@ export default function ProfilePage() {
 
           {/* Submit Action */}
           <div className="flex justify-end pt-3 border-t border-stroke dark:border-dark-3">
-            <button
+            <Button
               type="submit"
               disabled={updating || profile.isSubmitted}
-              className="flex items-center gap-2 rounded-lg bg-primary hover:bg-opacity-90 text-white px-6 py-2.5 font-bold transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center gap-1.5 font-bold"
             >
               {updating ? (
                 <>
@@ -354,11 +355,11 @@ export default function ProfilePage() {
                 </>
               ) : (
                 <>
-                  <Save className="h-4 w-4" />
-                  Save Profile
+                  <Check className="h-4 w-4" />
+                  Save Changes
                 </>
               )}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

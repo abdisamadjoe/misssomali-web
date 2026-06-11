@@ -12,6 +12,8 @@ import { ShowcaseSection } from "@/components/dashboard/Layouts/showcase-section
 import { authClient } from "@/lib/auth/auth-client";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Check, Loader2 } from "lucide-react";
 
 export interface UserInfo {
   name: string;
@@ -168,13 +170,18 @@ export function PersonalInfoForm(personalInfo: UserInfo) {
             Cancel
           </button>
 
-          <button
-            className="hover:bg-opacity-90 rounded-lg bg-primary px-6 py-1.75 font-medium text-gray-2 disabled:opacity-50"
+          <Button
             type="submit"
             disabled={isLoading}
+            className="flex items-center gap-1.5 font-bold"
           >
-            {isLoading ? "Saving..." : "Save"}
-          </button>
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Check className="h-4 w-4" />
+            )}
+            Save Changes
+          </Button>
         </div>
       </form>
     </ShowcaseSection>

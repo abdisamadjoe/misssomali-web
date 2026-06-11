@@ -14,6 +14,8 @@ import {
 } from "react";
 import { toast } from "sonner";
 import { UserIcon } from "./icons";
+import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
 
 const MAX_FILE_SIZE = 1 * 1024 * 1024;
 
@@ -191,12 +193,13 @@ export function UploadPhotoForm({ initialImage }: UploadPhotoFormProps) {
           >
             Cancel
           </button>
-          <button
-            className="hover:bg-opacity-90 flex items-center justify-center rounded-lg bg-primary px-6 py-1.75 font-medium text-gray-2"
+          <Button
             type="submit"
+            className="flex items-center gap-1.5 font-bold"
           >
-            Save
-          </button>
+            <Check className="h-4 w-4" />
+            Save Changes
+          </Button>
         </div>
       </form>
     </ShowcaseSection>

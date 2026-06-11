@@ -7,7 +7,7 @@ import {
   ArrowLeft,
   Upload,
   Image as ImageIcon,
-  Save,
+  Check,
   CheckCircle2,
   Trash2,
   FileText,
@@ -221,7 +221,7 @@ export default function EditBlogPage({ params }: PageProps) {
             {saving ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <Save className="h-4 w-4" />
+              <Check className="h-4 w-4" />
             )}
             Save Changes
           </Button>

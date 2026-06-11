@@ -6,7 +6,7 @@ import {
   Loader2,
   FileText,
   Plus,
-  Edit,
+  Pencil,
   Trash2,
   CheckCircle,
   XCircle,
@@ -278,12 +278,13 @@ export default function BlogsPage() {
                       <div className="flex justify-end gap-2">
                         <Button
                           variant="outline"
-                          size="icon"
-                          className="h-8 w-8 text-dark-6 border-stroke dark:border-dark-3"
+                          size="sm"
+                          className="flex items-center gap-1.5"
                           onClick={() => router.push(`/admin/blogs/${blog.id}`)}
                           title="Edit article"
                         >
-                          <Edit className="h-4 w-4" />
+                          <Pencil className="h-3.5 w-3.5" />
+                          Edit
                         </Button>
                         <Button
                           variant="destructive"

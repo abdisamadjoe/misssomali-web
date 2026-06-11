@@ -8,8 +8,9 @@ import {
   Upload,
   Link as LinkIcon,
   Image as ImageIcon,
-  Save,
   CheckCircle2,
+  Check,
+  Pencil,
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -313,10 +314,12 @@ export default function GrandFinaleSettingsPage() {
           {!isEditing ? (
             <Button
               type="button"
+              variant="outline"
               onClick={() => setIsEditing(true)}
-              className="bg-primary hover:bg-opacity-90 text-white font-bold"
+              className="flex items-center gap-1.5 font-bold"
             >
-              Edit Settings
+              <Pencil className="h-4 w-4" />
+              Edit
             </Button>
           ) : (
             <>
@@ -337,7 +340,7 @@ export default function GrandFinaleSettingsPage() {
                 {saving ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  <Save className="h-4 w-4" />
+                  <Check className="h-4 w-4" />
                 )}
                 Save Changes
               </Button>
@@ -607,7 +610,7 @@ export default function GrandFinaleSettingsPage() {
             {saving ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <Save className="h-4 w-4" />
+              <Check className="h-4 w-4" />
             )}
             Save Changes
           </Button>
