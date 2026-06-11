@@ -473,9 +473,30 @@ export default function Home() {
                         className="w-auto h-7 object-contain"
                       />
                     </div>
-                    <p className="text-[#F5F0E8]/75 text-[14px] font-light leading-[1.6] max-w-sm">
+                    <p className="text-[#F5F0E8]/75 text-[14px] font-light leading-[1.6] max-w-sm mb-4">
                       {texts.footerDesc}
                     </p>
+                    {/* Social icons */}
+                    <div className="flex gap-3">
+                      {[
+                        { name: "instagram", icon: "fa-brands fa-instagram", url: "https://instagram.com/misssomali" },
+                        { name: "twitter", icon: "fa-brands fa-x-twitter", url: "https://x.com/misssomali" },
+                        { name: "facebook", icon: "fa-brands fa-facebook-f", url: "https://facebook.com/misssomali" },
+                        { name: "tiktok", icon: "fa-brands fa-tiktok", url: "https://tiktok.com/@misssomali" },
+                        { name: "youtube", icon: "fa-brands fa-youtube", url: "https://youtube.com/misssomali" }
+                      ].map((social) => (
+                        <a
+                          key={social.name}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[13px] text-[#F5F0E8]/70 hover:bg-[#E8C97A] hover:text-[#071E4A] hover:border-[#E8C97A] hover:scale-110 hover:shadow-lg transition-all duration-300"
+                          title={`Follow us on ${social.name}`}
+                        >
+                          <i className={social.icon}></i>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -528,37 +549,15 @@ export default function Home() {
                   </ul>
                 </div>
 
-                {/* Copyright, Socials, and Legals bottom row */}
+                {/* Copyright and Legals bottom row */}
                 <div className="col-span-12 border-t border-[#E8C97A]/10 pt-6 mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
                   {/* Left: Copyright */}
-                  <div className="text-[12px] font-normal text-[#F5F0E8]/50 text-center md:text-left order-3 md:order-1">
+                  <div className="text-[12px] font-normal text-[#F5F0E8]/50 text-center md:text-left order-2 md:order-1">
                     <span>{texts.footerCopyright}</span>
                   </div>
 
-                  {/* Center: Social icons */}
-                  <div className="flex justify-center gap-3.5 order-1 md:order-2">
-                    {[
-                      { name: "instagram", icon: "fa-brands fa-instagram", url: "https://instagram.com/misssomali" },
-                      { name: "twitter", icon: "fa-brands fa-x-twitter", url: "https://x.com/misssomali" },
-                      { name: "facebook", icon: "fa-brands fa-facebook-f", url: "https://facebook.com/misssomali" },
-                      { name: "tiktok", icon: "fa-brands fa-tiktok", url: "https://tiktok.com/@misssomali" },
-                      { name: "youtube", icon: "fa-brands fa-youtube", url: "https://youtube.com/misssomali" }
-                    ].map((social) => (
-                      <a
-                        key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[13px] text-[#F5F0E8]/70 hover:bg-[#E8C97A] hover:text-[#071E4A] hover:border-[#E8C97A] hover:scale-110 hover:shadow-lg transition-all duration-300"
-                        title={`Follow us on ${social.name}`}
-                      >
-                        <i className={social.icon}></i>
-                      </a>
-                    ))}
-                  </div>
-
                   {/* Right: Legals */}
-                  <div className="flex gap-4 text-[12px] text-[#F5F0E8]/50 order-2 md:order-3">
+                  <div className="flex gap-4 text-[12px] text-[#F5F0E8]/50 order-1 md:order-2">
                     <a href="#" className="hover:text-[#E8C97A] transition-colors duration-200">{texts.footerPrivacy}</a>
                     <a href="#" className="hover:text-[#E8C97A] transition-colors duration-200">{texts.footerTerms}</a>
                   </div>
