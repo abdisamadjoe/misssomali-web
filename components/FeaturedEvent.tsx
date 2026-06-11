@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { AvatarStack } from "@/components/kibo-ui/avatar-stack";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface EventData {
   id: string;
@@ -16,8 +18,15 @@ interface EventData {
   ticketLink: string | null;
 }
 
+interface ContestantItem {
+  id: string;
+  fullName: string;
+  photoUrl: string | null;
+}
+
 export default function FeaturedEvent() {
   const [event, setEvent] = useState<EventData | null>(null);
+  const [contestantsList, setContestantsList] = useState<ContestantItem[]>([]);
 
   useEffect(() => {
     fetch("/api/events")
@@ -29,6 +38,16 @@ export default function FeaturedEvent() {
         if (data) setEvent(data);
       })
       .catch((err) => console.error("Error fetching featured event:", err));
+
+    fetch("/api/contestants/featured")
+      .then((res) => {
+        if (res.ok) return res.json();
+        return [];
+      })
+      .then((data) => {
+        if (Array.isArray(data)) setContestantsList(data);
+      })
+      .catch((err) => console.error("Error fetching featured contestants:", err));
   }, []);
 
   const title = event ? event.title : "Miss Somali 2026 Grand Finale.";
@@ -107,6 +126,31 @@ export default function FeaturedEvent() {
               >
                 {slogan}
               </motion.p>
+
+              {/* Featured Contestants (Avatar Stack) */}
+              {contestantsList.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.35 }}
+                  className="flex items-center justify-center lg:justify-start gap-3 mb-6"
+                >
+                  <AvatarStack size={38} animate>
+                    {contestantsList.slice(0, 5).map((c) => (
+                      <Avatar key={c.id} className="border-2 border-[#0D3A8A] w-[38px] h-[38px]">
+                        {c.photoUrl && <AvatarImage src={c.photoUrl} alt={c.fullName} className="object-cover" />}
+                        <AvatarFallback className="bg-[#E8C97A] text-[#071E4A] font-bold text-xs flex items-center justify-center">
+                          {c.fullName?.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                    ))}
+                  </AvatarStack>
+                  <span className="text-[13px] text-[#F5F0E8]/85 font-medium tracking-wide">
+                    Meet the Finalists
+                  </span>
+                </motion.div>
+              )}
 
               {/* Event Details (Mini) */}
               <motion.div
