@@ -8,6 +8,76 @@ import HowItWorks from "@/components/HowItWorks";
 import FeaturedEvent from "@/components/FeaturedEvent";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+
+const contentFadeVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" }
+  }
+};
+
+const aboutLeftVariants: Variants = {
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" }
+  }
+};
+
+const imageGridVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const mainImageVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95, x: -30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" }
+  }
+};
+
+const sideImageVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95, x: 30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" }
+  }
+};
+
+const contestantsContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const contestantCardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
 
 const texts = {
   journeyLabel: "The Path to Glory",
@@ -39,9 +109,9 @@ const texts = {
   footerDesc: "An international organization celebrating the union of Somali beauty, heritage, and values on a global stage.",
   footerQuickLinks: "Quick Links",
   footerContact: "Contact Us",
-  footerContactEmail: "Email: info@misssomali.org",
+  footerContactEmail: "Email: info@misssomali.com",
   footerContactPhone: "Phone: +252 (61) 555-0199",
-  footerContactOffice: "Office: Lido Beach, Mogadishu, Somalia",
+  footerContactOffice: "Office: Parklands, Nairobi, Kenya",
   footerNewsletter: "Newsletter",
   footerNewsletterDesc: "Subscribe for news, event ticketing updates, and exclusive releases.",
   footerNewsletterPlaceholder: "Email Address",
@@ -169,18 +239,23 @@ export default function Home() {
         {/* About Miss Somali Intro Section */}
         <section className="bg-[#FFFFFF] py-20 md:py-28 border-b border-[#0B2D6B]/5">
           <div className="grid-container">
-            <div className="grid-12 items-center gap-y-12 lg:gap-x-12">
-                            {/* Left Column: Text Content (Impressive Editorial Styling) */}
-              <div className="col-span-12 lg:col-span-6 flex flex-col text-left items-start">
+            <div className="grid-12 items-center gap-y-12 lg:gap-x-12">                             {/* Left Column: Text Content (Impressive Editorial Styling) */}
+              <motion.div 
+                className="col-span-12 lg:col-span-6 flex flex-col text-left items-start"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={aboutLeftVariants}
+              >
                 {/* Pill Badge */}
                 <div className="mb-6">
-                  <span className="text-[11px] font-bold tracking-[0.08em] uppercase text-[#0B2D6B] bg-[#E8C97A]/15 border border-[#E8C97A]/30 px-3.5 py-1 rounded-full inline-block">
+                  <span className="text-[11px] font-medium tracking-[0.08em] uppercase text-[#0B2D6B] bg-[#0B2D6B]/10 border border-[#0B2D6B]/20 px-3.5 py-1 rounded-full inline-block">
                     About Miss Somali
                   </span>
                 </div>
                 
                 {/* Impressive Section Title */}
-                <h2 className="text-[32px] sm:text-[42px] font-extrabold text-[#0B2D6B] tracking-tight leading-[1.15] mb-6">
+                <h2 className="text-[32px] sm:text-[42px] font-semibold text-[#0B2D6B] tracking-tight leading-[1.15] mb-6">
                   A Stage Built For <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B2D6B] to-[#0D3A8A]">Somali Women</span>
                 </h2>
                 
@@ -191,50 +266,65 @@ export default function Home() {
 
                 {/* Impressive Accent Callout Quote */}
                 <div className="border-l-2 border-[#E8C97A] pl-5 py-1 mt-6 max-w-xl">
-                  <p className="text-[16px] sm:text-[18px] font-semibold italic leading-[1.6] text-[#0D3A8A]">
+                  <p className="text-[16px] sm:text-[18px] font-medium italic leading-[1.6] text-[#0D3A8A]">
                     &quot;One woman will be crowned Miss Somali. But every woman who steps forward changes what the world knows about us.&quot;
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Right Column: Image Grid (Matching Gargaara/Pearl style) */}
-              <div className="col-span-12 lg:col-span-6">
+              <motion.div 
+                className="col-span-12 lg:col-span-6"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={imageGridVariants}
+              >
                 <div className="grid grid-cols-12 gap-4 h-[380px] sm:h-[480px] lg:h-[520px]">
                   {/* Left Big Image */}
-                  <div className="col-span-7 h-full relative rounded-3xl overflow-hidden shadow-sm">
+                  <motion.div 
+                    className="col-span-7 h-full relative rounded-3xl overflow-hidden shadow-sm"
+                    variants={mainImageVariants}
+                  >
                     <Image
-                      src="/images/aboutus.jpeg"
+                      src="/images/about1.webp"
                       alt="About Miss Somali Pageant - Main"
                       fill
                       sizes="(max-w-768px) 100vw, 40vw"
                       className="object-cover"
                     />
-                  </div>
+                  </motion.div>
                   {/* Right Two Smaller Stacked Images */}
                   <div className="col-span-5 flex flex-col gap-4 h-full">
                     {/* Top Smaller Image */}
-                    <div className="relative flex-1 rounded-3xl overflow-hidden shadow-sm">
+                    <motion.div 
+                      className="relative flex-1 rounded-3xl overflow-hidden shadow-sm"
+                      variants={sideImageVariants}
+                    >
                       <Image
-                        src="/images/aboutus2.jpeg"
+                        src="/images/about2.webp"
                         alt="About Miss Somali Pageant - Ceremony"
                         fill
                         sizes="(max-w-768px) 50vw, 20vw"
                         className="object-cover"
                       />
-                    </div>
+                    </motion.div>
                     {/* Bottom Smaller Image */}
-                    <div className="relative flex-1 rounded-3xl overflow-hidden shadow-sm">
+                    <motion.div 
+                      className="relative flex-1 rounded-3xl overflow-hidden shadow-sm"
+                      variants={sideImageVariants}
+                    >
                       <Image
-                        src="/images/aboutus3.jpeg"
+                        src="/images/about3.webp"
                         alt="About Miss Somali Pageant - Team"
                         fill
                         sizes="(max-w-768px) 50vw, 20vw"
                         className="object-cover"
                       />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </div>
@@ -244,22 +334,38 @@ export default function Home() {
         <section id="contestants" className="bg-[#0B2D6B] py-28 border-t border-[#E8C97A]/5">
           <div className="grid-container">
             <div className="grid-12">
-              <div className="col-span-12 text-center mb-16">
-                <span className="text-[12px] font-semibold tracking-[0.02em] leading-[1.7] text-[#E8C97A] block mb-2">
+              <motion.div 
+                className="col-span-12 text-center mb-16"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={contentFadeVariants}
+              >
+                <span className="text-[12px] font-medium tracking-[0.02em] leading-[1.7] text-[#E8C97A] block mb-2">
                   Miss Somali 2026
                 </span>
-                <h2 className="text-[28px] lg:text-[40px] font-bold text-[#FFFFFF] tracking-[-0.02em] leading-[1.15] mb-6">
+                <h2 className="text-[28px] lg:text-[40px] font-semibold text-[#FFFFFF] tracking-[-0.02em] leading-[1.15] mb-6">
                   Meet The Contestants
                 </h2>
                 <p className="text-[#F5F0E8]/70 text-[16px] font-normal leading-[1.7] tracking-normal max-w-2xl mx-auto">
                   The women competing for the Miss Somali 2026 crown. Each one representing her community, her culture, and her story.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Centered Row Container for the 5 circles */}
-              <div className="col-span-12 grid grid-cols-5 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center">
+              <motion.div 
+                className="col-span-12 grid grid-cols-5 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={contestantsContainerVariants}
+              >
                 {contestants.map((tc) => (
-                  <div key={tc.id} className="flex flex-col items-center group w-full max-w-[200px]">
+                  <motion.div 
+                    key={tc.id} 
+                    className="flex flex-col items-center group w-full max-w-[200px]"
+                    variants={contestantCardVariants}
+                  >
                     <div className="relative w-14 h-14 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full p-[2px] md:p-[3px] bg-gradient-to-tr from-[#E8C97A]/30 to-[#E8C97A] transition-all duration-300 group-hover:scale-[1.03]">
                       <div className="w-full h-full rounded-full bg-[#0B2D6B] p-[1.5px] md:p-[3px] flex items-center justify-center">
                         <div className="relative w-full h-full rounded-full overflow-hidden">
@@ -273,15 +379,15 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-[10px] sm:text-[13px] md:text-[16px] lg:text-[18px] font-bold text-[#FFFFFF] mt-2 md:mt-4 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A] truncate w-full">
+                    <h3 className="text-[10px] sm:text-[13px] md:text-[16px] lg:text-[18px] font-semibold text-[#FFFFFF] mt-2 md:mt-4 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A] truncate w-full">
                       {tc.name}
                     </h3>
-                    <span className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-bold tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-1.5 sm:px-2.5 py-0.5 mt-1 md:mt-2 rounded-full whitespace-nowrap">
+                    <span className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-1.5 sm:px-2.5 py-0.5 mt-1 md:mt-2 rounded-full whitespace-nowrap">
                       {tc.rank}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -292,135 +398,176 @@ export default function Home() {
 
 
 
-        {/* Improved Apply CTA Section */}
-        <section id="apply-cta" className="relative py-12 md:py-16 overflow-hidden bg-[#E8C97A] border-t border-[#E8C97A]/20">
-          {/* Grid line low opacity bg (dark navy blue grid lines on yellowish background) */}
-          <div className="absolute inset-0 pointer-events-none" style={{
-            backgroundImage: `linear-gradient(to right, rgba(7, 30, 74, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(7, 30, 74, 0.05) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
-          }} />
-
-          <div className="grid-container relative z-10">
-            <div className="grid-12 items-center">
-              {/* Left Column: Texts */}
-              <div className="col-span-12 md:col-span-8 lg:col-span-9 flex flex-col text-left">
-                <h2 className="text-[28px] sm:text-[34px] md:text-[38px] font-black text-[#071E4A] tracking-tight leading-[1.2] mb-3">
-                  Applications for Miss Somali 2026 are open now.
-                </h2>
-                <p className="text-[#071E4A]/85 text-[15px] sm:text-[16px] md:text-[17px] font-light leading-[1.6]">
-                  This is your chance to represent your culture, your community, and your story on the world stage. <b className="font-bold text-[#071E4A]"> Applications close soon. Do not miss your chance. </b>
-                </p>
-              </div>
-
-              {/* Right Column: Button */}
-              <div className="col-span-12 md:col-span-4 lg:col-span-3 flex md:justify-end items-center mt-6 md:mt-0">
-                <Link
-                  href="/portal"
-                  className="bg-[#071E4A] hover:bg-[#0B2D6B] text-[#FFFFFF] px-10 py-4 rounded-full font-bold text-[14px] leading-none tracking-[0.02em] transition-all duration-300 shadow-md hover:shadow-lg inline-block text-center whitespace-nowrap"
-                >
-                  Apply Now
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Rebuilt Apply CTA Section & Footer in one shared background container */}
       </main>
 
-      {/* Footer Section */}
-      <footer id="contact" className="bg-[#071E4A] py-20 border-t border-[#E8C97A]/10 text-[#F5F0E8]">
-        <div className="grid-container">
-          <div className="grid-12 gap-y-12">
-            {/* Column 1 (4 cols) */}
-            <div className="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col justify-between">
-              <div>
-                <div className="bg-[#0B2D6B] px-4 py-3.5 inline-block mb-6 shadow-sm">
-                  <Image
-                    src="/logo.png"
-                    alt="Miss Somali Logo"
-                    width={130}
-                    height={40}
-                    className="w-auto h-8 object-contain"
-                  />
-                </div>
-                <p className="text-[#F5F0E8]/75 text-[15px] font-light leading-[1.7] max-w-sm">
-                  {texts.footerDesc}
-                </p>
-              </div>
-              <div className="flex space-x-4 mt-6">
-                {/* Social links */}
-                {["twitter", "facebook", "instagram", "youtube"].map((social) => (
-                  <a key={social} href="#" className="w-8 h-8 rounded-none border border-[#E8C97A]/15 flex items-center justify-center hover:border-[#E8C97A] hover:text-[#E8C97A] transition-all duration-300 text-[12px] flex items-center justify-center font-semibold text-[#F5F0E8]">
-                    {social[0].toUpperCase()}
-                  </a>
-                ))}
-              </div>
-            </div>
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#0B2D6B] via-[#0D3A8A] to-[#071E4A] border-t border-white/5 text-[#F5F0E8]">
+        {/* Background spotlights, ambient glows, and clean gold-accented grid lines */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+          {/* Soft gold radial glowing lights */}
+          <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#E8C97A]/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-[#E8C97A]/5 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Column 2 (3 cols) */}
-            <div className="col-span-6 md:col-span-3 lg:col-span-3">
-              <h4 className="text-[12px] font-semibold text-[#E8C97A] mb-6">
-                {texts.footerQuickLinks}
-              </h4>
-              <ul className="flex flex-col gap-3 text-[13px] font-normal text-[#F5F0E8]/85">
-                {[
-                  { name: "Home", href: "#home" },
-                  { name: "The Journey", href: "#journey" },
-                  { name: "Contestants", href: "#contestants" },
-                  { name: "Events", href: "#events" },
-                  { name: "About", href: "#about" }
-                ].map((link) => (
-                  <li key={link.name}>
-                    <a href={link.href} className="hover:text-[#F0D898] transition-colors duration-200">
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Ambient radial vignette mapping */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#071E4A_95%)] z-10 pointer-events-none" />
 
-            {/* Column 3 (3 cols) */}
-            <div className="col-span-6 md:col-span-3 lg:col-span-3">
-              <h4 className="text-[12px] font-semibold text-[#E8C97A] mb-6">
-                {texts.footerContact}
-              </h4>
-              <ul className="flex flex-col gap-3 text-[13px] font-normal text-[#F5F0E8]/75">
-                <li>{texts.footerContactEmail}</li>
-                <li>{texts.footerContactPhone}</li>
-                <li>{texts.footerContactOffice}</li>
-              </ul>
-            </div>
-
-            {/* Column 4 (2 cols) */}
-            <div className="col-span-12 md:col-span-12 lg:col-span-2">
-              <h4 className="text-[12px] font-semibold text-[#E8C97A] mb-6">
-                {texts.footerNewsletter}
-              </h4>
-              <p className="text-[15px] text-[#F5F0E8]/75 mb-4 leading-[1.7] font-light">
-                {texts.footerNewsletterDesc}
-              </p>
-              <form className="flex" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="email"
-                  placeholder={texts.footerNewsletterPlaceholder}
-                  className="bg-white border border-[#E8C97A]/15 px-3 py-2 text-[15px] font-normal focus:outline-none focus:border-[#E8C97A] w-full text-[#071E4A] rounded-none placeholder-[#071E4A]/50"
-                />
-                <button type="submit" className="bg-[#E8C97A] hover:bg-[#F0D898] text-[#071E4A] font-bold px-4 text-[14px] tracking-[0.02em] leading-none transition-colors duration-200 cursor-pointer">
-                  {texts.footerNewsletterCTA}
-                </button>
-              </form>
-            </div>
-
-            {/* Copyright row */}
-            <div className="col-span-12 border-t border-[#E8C97A]/10 pt-8 mt-4 text-center text-[13px] font-normal text-[#F5F0E8]/60 flex flex-col md:flex-row justify-between items-center gap-4">
-              <span>{texts.footerCopyright}</span>
-              <div className="flex gap-6">
-                <a href="#" className="hover:text-[#E8C97A]">{texts.footerPrivacy}</a>
-                <a href="#" className="hover:text-[#E8C97A]">{texts.footerTerms}</a>
-              </div>
-            </div>
-          </div>
+          {/* Fine gold-accented grid pattern */}
+          <div className="absolute inset-0 opacity-15 pointer-events-none z-15" style={{
+            backgroundImage: `linear-gradient(to right, rgba(232, 201, 122, 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(232, 201, 122, 0.08) 1px, transparent 1px)`,
+            backgroundSize: '45px 45px'
+          }} />
         </div>
-      </footer>
+
+        <div className="relative z-10">
+          {/* Apply CTA Section */}
+          <section id="apply-cta" className="py-16 md:py-20 border-b border-white/5">
+            <motion.div 
+              className="grid-container relative z-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="grid-12 items-center gap-y-6 md:gap-y-0">
+                {/* Left Column: Texts */}
+                <div className="col-span-12 md:col-span-8 lg:col-span-9 flex flex-col text-left items-start relative z-10">
+                  {/* Glow/Dark Badge */}
+                  <div className="mb-4 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E8C97A]/10 border border-[#E8C97A]/25">
+                    <i className="fas fa-crown text-[#E8C97A] text-[10px] animate-pulse"></i>
+                    <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-[#E8C97A]">
+                      Applications Open
+                    </span>
+                  </div>
+
+                  <h2 className="text-[28px] sm:text-[34px] md:text-[38px] font-semibold text-white tracking-tight leading-[1.2] mb-3">
+                    Applications for Miss Somali 2026 are open now.
+                  </h2>
+                  <p className="text-[#F5F0E8]/75 text-[15px] sm:text-[16px] md:text-[17px] font-light leading-[1.6]">
+                    This is your chance to represent your culture, your community, and your story on the world stage. Applications close soon. Do not miss your chance.
+                  </p>
+                </div>
+
+                {/* Right Column: Button */}
+                <div className="col-span-12 md:col-span-4 lg:col-span-3 flex md:justify-end items-center mt-6 md:mt-0 relative z-10">
+                  <PrimaryButton href="/portal">
+                    Apply Now
+                  </PrimaryButton>
+                </div>
+              </div>
+            </motion.div>
+          </section>
+
+          {/* Footer Section */}
+          <footer id="contact" className="py-8 md:py-12 text-[#F5F0E8]">
+            <div className="grid-container relative z-10">
+              <div className="grid-12 gap-y-8 lg:gap-y-0">
+                {/* Column 1 (5 cols) */}
+                <div className="col-span-12 md:col-span-6 lg:col-span-5 flex flex-col justify-between">
+                  <div>
+                    <div className="bg-[#0B2D6B]/50 px-3 py-2 inline-block mb-4 shadow-sm border border-[#E8C97A]/10">
+                      <Image
+                        src="/logo.png"
+                        alt="Miss Somali Logo"
+                        width={120}
+                        height={36}
+                        className="w-auto h-7 object-contain"
+                      />
+                    </div>
+                    <p className="text-[#F5F0E8]/75 text-[14px] font-light leading-[1.6] max-w-sm">
+                      {texts.footerDesc}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Column 2 (3 cols) */}
+                <div className="col-span-6 md:col-span-3 lg:col-span-3">
+                  <h4 className="text-[12px] font-semibold uppercase tracking-wider text-[#E8C97A] mb-4 flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-[#E8C97A]" />
+                    {texts.footerQuickLinks}
+                  </h4>
+                  <ul className="flex flex-col gap-2 text-[13px] font-normal text-[#F5F0E8]/85">
+                    {[
+                      { name: "Home", href: "#home" },
+                      { name: "The Journey", href: "#journey" },
+                      { name: "Contestants", href: "#contestants" },
+                      { name: "Events", href: "#events" },
+                      { name: "About", href: "#about" }
+                    ].map((link) => (
+                      <li key={link.name} className="transition-transform duration-250 hover:translate-x-1">
+                        <a href={link.href} className="hover:text-[#E8C97A] transition-colors duration-200">
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Column 3 (4 cols) */}
+                <div className="col-span-6 md:col-span-3 lg:col-span-4">
+                  <h4 className="text-[12px] font-semibold uppercase tracking-wider text-[#E8C97A] mb-4 flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-[#E8C97A]" />
+                    {texts.footerContact}
+                  </h4>
+                  <ul className="flex flex-col gap-3 text-[13px] font-normal text-[#F5F0E8]/75">
+                    <li className="flex items-center gap-2.5 group">
+                      <span className="w-7 h-7 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[10px] group-hover:bg-[#E8C97A] group-hover:text-[#071E4A] group-hover:border-[#E8C97A] transition-all duration-300">
+                        <i className="fas fa-envelope"></i>
+                      </span>
+                      <a href="mailto:info@misssomali.com" className="hover:text-[#E8C97A] transition-colors duration-200">
+                        info@misssomali.com
+                      </a>
+                    </li>
+                    <li className="flex items-center gap-2.5 group">
+                      <span className="w-7 h-7 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[10px] group-hover:bg-[#E8C97A] group-hover:text-[#071E4A] group-hover:border-[#E8C97A] transition-all duration-300">
+                        <i className="fas fa-map-marker-alt"></i>
+                      </span>
+                      <span className="group-hover:text-[#E8C97A] transition-colors duration-200">
+                        Parklands, Nairobi, Kenya
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Copyright, Socials, and Legals bottom row */}
+                <div className="col-span-12 border-t border-[#E8C97A]/10 pt-6 mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                  {/* Left: Copyright */}
+                  <div className="text-[12px] font-normal text-[#F5F0E8]/50 text-center md:text-left order-3 md:order-1">
+                    <span>{texts.footerCopyright}</span>
+                  </div>
+
+                  {/* Center: Social icons */}
+                  <div className="flex justify-center gap-3.5 order-1 md:order-2">
+                    {[
+                      { name: "instagram", icon: "fa-brands fa-instagram", url: "https://instagram.com/misssomali" },
+                      { name: "twitter", icon: "fa-brands fa-x-twitter", url: "https://x.com/misssomali" },
+                      { name: "facebook", icon: "fa-brands fa-facebook-f", url: "https://facebook.com/misssomali" },
+                      { name: "tiktok", icon: "fa-brands fa-tiktok", url: "https://tiktok.com/@misssomali" },
+                      { name: "youtube", icon: "fa-brands fa-youtube", url: "https://youtube.com/misssomali" }
+                    ].map((social) => (
+                      <a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[13px] text-[#F5F0E8]/70 hover:bg-[#E8C97A] hover:text-[#071E4A] hover:border-[#E8C97A] hover:scale-110 hover:shadow-lg transition-all duration-300"
+                        title={`Follow us on ${social.name}`}
+                      >
+                        <i className={social.icon}></i>
+                      </a>
+                    ))}
+                  </div>
+
+                  {/* Right: Legals */}
+                  <div className="flex gap-4 text-[12px] text-[#F5F0E8]/50 order-2 md:order-3">
+                    <a href="#" className="hover:text-[#E8C97A] transition-colors duration-200">{texts.footerPrivacy}</a>
+                    <a href="#" className="hover:text-[#E8C97A] transition-colors duration-200">{texts.footerTerms}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
     </>
   );
 }
