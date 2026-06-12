@@ -5,12 +5,19 @@ import { prisma } from "@/lib/db";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const noCacheHeaders = {
+    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+  };
+
   try {
     // Retrieve the session from Neon Auth
     const { data: session } = await auth.getSession();
 
     if (!session) {
-      return NextResponse.json({ authenticated: false }, { status: 401 });
+      return NextResponse.json(
+        { authenticated: false },
+        { status: 401, headers: noCacheHeaders }
+      );
     }
 
     // Lookup the user profile matching the Neon Auth unique user ID
@@ -43,17 +50,23 @@ export async function GET() {
       });
     }
 
-    return NextResponse.json({
-      authenticated: true,
-      authUserId: session.user.id,
-      email: session.user.email,
-      fullName: profile.fullName,
-      role: profile.role,
-      profileId: profile.id,
-      profilePhotoUrl: profile.photos?.[0]?.url || "",
-    });
+    return NextResponse.json(
+      {
+        authenticated: true,
+        authUserId: session.user.id,
+        email: session.user.email,
+        fullName: profile.fullName,
+        role: profile.role,
+        profileId: profile.id,
+        profilePhotoUrl: profile.photos?.[0]?.url || "",
+      },
+      { headers: noCacheHeaders }
+    );
   } catch (error) {
     console.error("Auth role endpoint error:", error);
-    return NextResponse.json({ authenticated: false, error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { authenticated: false, error: "Internal server error" },
+      { status: 500, headers: noCacheHeaders }
+    );
   }
 }

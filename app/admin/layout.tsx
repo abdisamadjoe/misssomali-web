@@ -65,12 +65,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const handleSignOut = async () => {
     try {
       await authClient.signOut();
-      // Use hard navigation to fully clear client-side cache and cookies
-      window.location.href = "/login";
+      router.replace("/login");
+      router.refresh();
     } catch (err) {
       console.error("Sign out error:", err);
       // Even if signOut API fails, force redirect to login
-      window.location.href = "/login";
+      router.replace("/login");
+      router.refresh();
     }
   };
 
