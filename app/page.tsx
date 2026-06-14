@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import FeaturedEvent from "@/components/FeaturedEvent";
+import BlogsSection from "@/components/BlogsSection";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
@@ -394,6 +395,7 @@ export default function Home() {
         </section>
 
         <HowItWorks />
+        <BlogsSection />
 
         <FeaturedEvent />
 
