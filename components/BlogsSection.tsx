@@ -79,7 +79,7 @@ export default function BlogsSection() {
     }
   ];
 
-  const displayedBlogs = blogs.length > 0 ? blogs : fallbackBlogs;
+  const displayedBlogs = (blogs.length > 0 ? blogs : fallbackBlogs).slice(0, 3);
 
   // Stagger animation container
   const containerVariants = {
@@ -164,7 +164,7 @@ export default function BlogsSection() {
 
                 {/* 2. Bold Headline/Title */}
                 <h3 className="text-[#071E4A] font-semibold text-xl md:text-[22px] leading-snug tracking-tight mb-4 group-hover:text-[#0B2D6B] transition-colors duration-250">
-                  <Link href={`#`} className="hover:underline line-clamp-2">
+                  <Link href={`/blogs/${blog.slug}`} className="hover:underline line-clamp-2">
                     {blog.title}
                   </Link>
                 </h3>

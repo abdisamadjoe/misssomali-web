@@ -10,7 +10,7 @@ const navLinks = [
   { name: "Contestants", href: "/#contestants" },
   { name: "Events", href: "/#grand-finale" },
   { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "Blog", href: "/blogs" },
 ];
 
 export default function Navbar() {

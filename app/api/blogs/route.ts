@@ -6,7 +6,6 @@ export async function GET(request: NextRequest) {
     const blogs = await prisma.blog.findMany({
       where: { status: "published" },
       orderBy: { publishedAt: "desc" },
-      take: 3,
     });
     return NextResponse.json(blogs);
   } catch (error) {

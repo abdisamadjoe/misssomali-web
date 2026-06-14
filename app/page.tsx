@@ -395,7 +395,6 @@ export default function Home() {
         </section>
 
         <HowItWorks />
-        <BlogsSection />
 
         <FeaturedEvent />
 

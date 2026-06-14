@@ -20,7 +20,7 @@ export default function Footer({ className }: FooterProps) {
     { name: "About Us", href: "/about" },
     { name: "Contestants", href: "/#contestants" },
     { name: "Events", href: "/#events" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Blog", href: "/blogs" },
   ];
 
   const processLinks = [
