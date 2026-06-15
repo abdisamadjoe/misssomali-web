@@ -226,7 +226,7 @@ export default function GrandFinaleEvent() {
               <div className="relative z-50 w-full lg:w-[45%] flex items-center justify-center p-6 lg:p-0 lg:pr-10">
                 
                 {/* Floating Image Wrapper */}
-                <div className="relative w-full max-w-md lg:max-w-none lg:w-[145%] lg:-mt-16 aspect-[16/10] sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(11,45,107,0.3)] transition-all duration-[800ms] ease-out group-hover:-translate-y-12 group-hover:scale-[1.03] group-hover:shadow-[0_50px_100px_rgba(11,45,107,0.5)] lg:translate-x-10 bg-[#0B2D6B]">
+                <div className="relative w-full max-w-md lg:max-w-none lg:w-[145%] lg:-mt-16 aspect-[16/10] sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(11,45,107,0.3)] transition-all duration-[800ms] ease-out group-hover:-translate-y-12 group-hover:scale-[1.03] group-hover:shadow-[0_50px_100px_rgba(11,45,107,0.5)] lg:translate-x-10">
                   
                   <Image
                     src={event.coverImage}
@@ -237,25 +237,6 @@ export default function GrandFinaleEvent() {
                     sizes="(max-w-1024px) 100vw, 40vw"
                   />
                   
-                  {/* Glassmorphic Countdown Overlay Inside Poster */}
-                  <div className="absolute bottom-4 inset-x-4">
-                    <div className="flex items-center justify-between border border-white/20 bg-black/40 backdrop-blur-xl rounded-2xl py-4 sm:py-5 divide-x divide-white/20 shadow-2xl">
-                      {isPassed ? (
-                        <div className="w-full text-center px-8 py-2">
-                          <span className="text-white/80 font-medium tracking-[0.2em] uppercase text-sm">
-                            Event Concluded
-                          </span>
-                        </div>
-                      ) : (
-                        <>
-                          <MinimalFlipNumber value={timeLeft.days} label="Days" />
-                          <MinimalFlipNumber value={timeLeft.hours} label="Hours" />
-                          <MinimalFlipNumber value={timeLeft.minutes} label="Mins" />
-                          <MinimalFlipNumber value={timeLeft.seconds} label="Secs" />
-                        </>
-                      )}
-                    </div>
-                  </div>
                 </div>
               </div>
 
