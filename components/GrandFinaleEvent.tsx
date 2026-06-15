@@ -222,22 +222,26 @@ export default function GrandFinaleEvent() {
                 </div>
               </div>
 
-              {/* Right Column: Free-Floating Image */}
-              <div className="relative z-50 w-full lg:w-[45%] flex items-center justify-center p-6 lg:p-0 lg:pr-10">
+              {/* Right Column: Free-Floating Image with Bottom Cropping */}
+              <div className="relative z-50 w-full lg:w-[45%] h-[350px] sm:h-[450px] lg:h-full mt-8 lg:mt-0">
                 
-                {/* Unconstrained Floating Image */}
-                <div className="relative w-full max-w-md lg:max-w-none lg:w-[145%] lg:-mt-16 lg:translate-x-10 transition-all duration-[800ms] ease-out group-hover:-translate-y-12 group-hover:scale-[1.03]">
+                {/* Directional Crop Container (200% height, anchored to bottom) */}
+                <div className="absolute bottom-0 right-0 w-full h-[200%] overflow-hidden rounded-b-[32px] sm:rounded-b-[40px] lg:rounded-b-none lg:rounded-br-[40px] pointer-events-none flex justify-center lg:block">
                   
-                  <Image
-                    src={event.coverImage}
-                    alt={event.title}
-                    width={1200}
-                    height={1200}
-                    priority
-                    className="w-full h-auto object-contain transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                    sizes="(max-w-1024px) 100vw, 40vw"
-                  />
-                  
+                  {/* Unconstrained Floating Image */}
+                  <div className="absolute bottom-[-10%] lg:bottom-[-15%] w-full max-w-[90%] sm:max-w-md lg:max-w-none lg:w-[145%] pointer-events-auto transition-all duration-[800ms] ease-out group-hover:-translate-y-12 group-hover:scale-[1.03] lg:translate-x-10 lg:right-10">
+                    
+                    <Image
+                      src={event.coverImage}
+                      alt={event.title}
+                      width={1200}
+                      height={1200}
+                      priority
+                      className="w-full h-auto object-contain transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+                      sizes="(max-w-1024px) 100vw, 40vw"
+                    />
+                    
+                  </div>
                 </div>
               </div>
 
