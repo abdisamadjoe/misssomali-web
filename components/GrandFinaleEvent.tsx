@@ -232,7 +232,7 @@ export default function GrandFinaleEvent() {
                 >
                   
                   {/* Unconstrained Floating Image */}
-                  <div className="absolute bottom-[-10%] lg:bottom-[-15%] w-full max-w-[90%] sm:max-w-md lg:max-w-none lg:w-[95%] pointer-events-auto lg:translate-x-8 lg:right-4">
+                  <div className="absolute bottom-[-10%] lg:bottom-[-15%] w-full max-w-[90%] sm:max-w-md lg:max-w-none lg:w-[105%] pointer-events-auto lg:translate-x-8 lg:right-4">
                     
                     <motion.div
                       initial={{ opacity: 0, y: 80, scale: 0.95 }}
