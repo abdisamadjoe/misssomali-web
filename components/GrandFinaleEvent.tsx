@@ -226,7 +226,7 @@ export default function GrandFinaleEvent() {
               <div className="relative z-50 w-full lg:w-[45%] flex items-center justify-center p-6 lg:p-0 lg:pr-10">
                 
                 {/* Floating Image Wrapper */}
-                <div className="relative w-full max-w-md lg:max-w-none lg:w-[105%] aspect-[16/10] sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(11,45,107,0.2)] transition-all duration-[800ms] ease-out group-hover:-translate-y-6 group-hover:scale-[1.02] group-hover:shadow-[0_40px_80px_rgba(11,45,107,0.3)] lg:translate-x-6 bg-[#0B2D6B]">
+                <div className="relative w-full max-w-md lg:max-w-none lg:w-[145%] lg:-mt-16 aspect-[16/10] sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(11,45,107,0.3)] transition-all duration-[800ms] ease-out group-hover:-translate-y-12 group-hover:scale-[1.03] group-hover:shadow-[0_50px_100px_rgba(11,45,107,0.5)] lg:translate-x-10 bg-[#0B2D6B]">
                   
                   <Image
                     src={event.coverImage}
