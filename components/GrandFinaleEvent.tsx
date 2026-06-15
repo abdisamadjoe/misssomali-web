@@ -153,7 +153,7 @@ export default function GrandFinaleEvent() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               onMouseMove={handleMouseMove}
-              className="group relative rounded-[32px] sm:rounded-[40px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] w-full flex flex-col lg:flex-row"
+              className="group relative rounded-[32px] sm:rounded-[40px] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] w-full flex flex-col lg:flex-row lg:h-[520px]"
             >
               {/* Mouse-tracking Spotlight Container */}
               <div className="absolute inset-0 rounded-[40px] overflow-hidden pointer-events-none z-0">
