@@ -143,10 +143,10 @@ export default function GrandFinaleEvent() {
         }} />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-16">
-        <div className="w-full">
+      <div className="grid-container relative z-10">
+        <div className="grid-12">
           
-          <div className="w-full">
+          <div className="col-span-12">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
