@@ -231,8 +231,8 @@ export default function GrandFinaleEvent() {
                   style={{ clipPath: "polygon(-100% -100%, 200% -100%, 200% 100%, -100% 100%)" }}
                 >
                   
-                  {/* Unconstrained Floating Image (Size reduced by ~20%) */}
-                  <div className="absolute bottom-[-10%] lg:bottom-[-15%] w-full max-w-[90%] sm:max-w-md lg:max-w-none lg:w-[120%] pointer-events-auto transition-all duration-[800ms] ease-out group-hover:-translate-y-12 group-hover:scale-[1.03] lg:translate-x-8 lg:right-4">
+                  {/* Unconstrained Floating Image (Size further reduced) */}
+                  <div className="absolute bottom-[-10%] lg:bottom-[-15%] w-full max-w-[90%] sm:max-w-md lg:max-w-none lg:w-[95%] pointer-events-auto transition-all duration-[800ms] ease-out group-hover:-translate-y-12 group-hover:scale-[1.03] lg:translate-x-8 lg:right-4">
                     
                     <Image
                       src={event.coverImage}
