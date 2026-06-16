@@ -222,8 +222,8 @@ export default function GrandFinaleEvent() {
                 </div>
               </div>
 
-              {/* Right Column: Free-Floating Image with Bottom Cropping */}
-              <div className="relative z-50 w-full lg:w-[45%] h-[350px] sm:h-[450px] lg:h-full mt-8 lg:mt-0">
+              {/* Right Column: Free-Floating Image with Bottom Cropping - Desktop (lg and up) */}
+              <div className="hidden lg:block relative z-50 w-full lg:w-[45%] lg:h-full mt-8 lg:mt-0">
                 
                 {/* Directional Clip-Path Container (Allows L/R/Top overflow, crops Bottom exactly) */}
                 <div 
@@ -247,12 +247,23 @@ export default function GrandFinaleEvent() {
                         height={1200}
                         priority
                         className="w-full h-auto object-contain"
-                        sizes="(max-w-1024px) 100vw, 40vw"
+                        sizes="40vw"
                       />
                     </motion.div>
                     
                   </div>
                 </div>
+              </div>
+
+              {/* Mobile/Tablet image wrapper (below lg) */}
+              <div className="block lg:hidden relative w-full h-[280px] sm:h-[380px] overflow-hidden rounded-b-[32px] sm:rounded-b-[40px]">
+                <Image
+                  src={event.coverImage}
+                  alt={event.title}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-w-1024px) 100vw"
+                />
               </div>
 
             </motion.div>

@@ -281,7 +281,8 @@ export default function Home() {
                 viewport={{ once: true, margin: "-100px" }}
                 variants={imageGridVariants}
               >
-                <div className="grid grid-cols-12 gap-4 h-[380px] sm:h-[480px] lg:h-[520px]">
+                {/* Desktop Image Grid (visible lg and up) */}
+                <div className="hidden lg:grid grid-cols-12 gap-4 h-[520px]">
                   {/* Left Big Image */}
                   <motion.div 
                     className="col-span-7 h-full relative rounded-3xl overflow-hidden shadow-sm"
@@ -291,7 +292,7 @@ export default function Home() {
                       src="/images/about1.webp"
                       alt="About Miss Somali Pageant - Main"
                       fill
-                      sizes="(max-w-768px) 100vw, 40vw"
+                      sizes="40vw"
                       className="object-cover"
                     />
                   </motion.div>
@@ -306,7 +307,7 @@ export default function Home() {
                         src="/images/about2.webp"
                         alt="About Miss Somali Pageant - Ceremony"
                         fill
-                        sizes="(max-w-768px) 50vw, 20vw"
+                        sizes="20vw"
                         className="object-cover"
                       />
                     </motion.div>
@@ -319,11 +320,27 @@ export default function Home() {
                         src="/images/about3.webp"
                         alt="About Miss Somali Pageant - Team"
                         fill
-                        sizes="(max-w-768px) 50vw, 20vw"
+                        sizes="20vw"
                         className="object-cover"
                       />
                     </motion.div>
                   </div>
+                </div>
+
+                {/* Mobile/Tablet Image Layout (visible below lg) */}
+                <div className="grid lg:hidden grid-cols-12 gap-4 h-[320px] sm:h-[420px]">
+                  <motion.div 
+                    className="col-span-12 h-full relative rounded-[24px] overflow-hidden shadow-sm"
+                    variants={mainImageVariants}
+                  >
+                    <Image
+                      src="/images/about1.webp"
+                      alt="About Miss Somali Pageant - Main"
+                      fill
+                      sizes="(max-w-1024px) 100vw"
+                      className="object-cover"
+                    />
+                  </motion.div>
                 </div>
               </motion.div>
 
@@ -353,9 +370,9 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              {/* Centered Row Container for the 5 circles */}
+              {/* Desktop view: 5 circles grid (visible md and up) */}
               <motion.div 
-                className="col-span-12 grid grid-cols-5 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center"
+                className="col-span-12 hidden md:grid md:grid-cols-5 gap-4 md:gap-6 lg:gap-8 justify-items-center"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
@@ -367,7 +384,7 @@ export default function Home() {
                     className="flex flex-col items-center group w-full max-w-[200px]"
                     variants={contestantCardVariants}
                   >
-                    <div className="relative w-14 h-14 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full p-[2px] md:p-[3px] bg-gradient-to-tr from-[#E8C97A]/30 to-[#E8C97A] transition-all duration-300 group-hover:scale-[1.03]">
+                    <div className="relative w-24 sm:w-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full p-[2px] md:p-[3px] bg-gradient-to-tr from-[#E8C97A]/30 to-[#E8C97A] transition-all duration-300 group-hover:scale-[1.03]">
                       <div className="w-full h-full rounded-full bg-[#0B2D6B] p-[1.5px] md:p-[3px] flex items-center justify-center">
                         <div className="relative w-full h-full rounded-full overflow-hidden">
                           <Image
@@ -380,10 +397,47 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-[10px] sm:text-[13px] md:text-[16px] lg:text-[18px] font-semibold text-[#FFFFFF] mt-2 md:mt-4 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A] truncate w-full">
+                    <h3 className="text-[13px] md:text-[16px] lg:text-[18px] font-semibold text-[#FFFFFF] mt-2 md:mt-4 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A] truncate w-full">
                       {tc.name}
                     </h3>
-                    <span className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-1.5 sm:px-2.5 py-0.5 mt-1 md:mt-2 rounded-full whitespace-nowrap">
+                    <span className="text-[9px] md:text-[10px] lg:text-[11px] font-medium tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-1.5 sm:px-2.5 py-0.5 mt-1 md:mt-2 rounded-full whitespace-nowrap">
+                      {tc.rank}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* Mobile/Tablet view: Horizontal scrollable track (visible below md) */}
+              <motion.div 
+                className="col-span-12 flex md:hidden overflow-x-auto gap-5 snap-x scrollbar-none pb-6 w-full -mx-6 px-6"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={contestantsContainerVariants}
+              >
+                {contestants.map((tc) => (
+                  <motion.div 
+                    key={tc.id} 
+                    className="flex flex-col items-center group flex-shrink-0 snap-center w-[140px]"
+                    variants={contestantCardVariants}
+                  >
+                    <div className="relative w-28 h-28 rounded-full p-[2px] bg-gradient-to-tr from-[#E8C97A]/30 to-[#E8C97A] transition-all duration-300">
+                      <div className="w-full h-full rounded-full bg-[#0B2D6B] p-[2px] flex items-center justify-center">
+                        <div className="relative w-full h-full rounded-full overflow-hidden">
+                          <Image
+                            src={tc.image}
+                            alt={tc.name}
+                            fill
+                            sizes="120px"
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <h3 className="text-[14px] font-semibold text-[#FFFFFF] mt-3 text-center tracking-tight transition-colors duration-200 group-hover:text-[#E8C97A] truncate w-full">
+                      {tc.name}
+                    </h3>
+                    <span className="text-[10px] font-medium tracking-[0.05em] uppercase text-[#E8C97A] bg-[#E8C97A]/10 border border-[#E8C97A]/20 px-2.5 py-0.5 mt-1.5 rounded-full whitespace-nowrap">
                       {tc.rank}
                     </span>
                   </motion.div>

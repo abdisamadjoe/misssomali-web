@@ -74,7 +74,8 @@ export default function HowItWorks() {
         <div className="grid-12">
           <div className="col-span-12">
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 lg:gap-y-24 gap-x-8 lg:gap-x-12">
+            {/* Desktop Timeline (visible md and up) */}
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-y-16 lg:gap-y-24 gap-x-8 lg:gap-x-12">
               {steps.map((step, stepIdx) => (
                 <motion.div 
                   key={step.title} 
@@ -105,7 +106,7 @@ export default function HowItWorks() {
                       ${(stepIdx + 1) % 3 === 0 ? 'lg:hidden' : ''}
                       ${(stepIdx + 1) % 2 === 0 ? 'md:hidden lg:block' : ''}
                     `} />
-
+ 
                     {/* Animated Fill Line (Blue) - Fills on scroll */}
                     <motion.div 
                       className={`
@@ -144,6 +145,53 @@ export default function HowItWorks() {
                         <ArrowRight className="w-4 h-4 relative z-10 transition-transform group-hover/link:translate-x-1" />
                         {/* Hover underline animation */}
                         <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#2563EB] transform origin-left scale-x-0 transition-transform duration-300 group-hover/link:scale-x-100" />
+                      </Link>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Mobile/Tablet Vertical Timeline (visible below md) */}
+            <div className="block md:hidden space-y-10 relative pl-4 sm:pl-8">
+              {/* Core Vertical Connecting Line */}
+              <div className="absolute left-[40px] sm:left-[60px] top-6 bottom-6 w-[2px] bg-slate-100 z-0" />
+              
+              {steps.map((step, stepIdx) => (
+                <motion.div 
+                  key={step.title} 
+                  className="relative flex gap-5 sm:gap-7 items-start group z-10"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: stepIdx * 0.08 }}
+                >
+                  {/* Timeline Node */}
+                  <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 flex-none items-center justify-center bg-white border-2 border-[#0B2D6B]/20 rounded-full shadow-sm z-10">
+                    <span className="text-black text-base sm:text-lg font-semibold">
+                      {step.number}
+                    </span>
+                  </div>
+
+                  {/* Step Content */}
+                  <div className="flex flex-col pt-1">
+                    <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-[#0B2D6B] uppercase mb-1 block">
+                      Step {step.number}
+                    </span>
+                    <h3 className="text-[18px] sm:text-[22px] font-semibold leading-[1.2] text-black tracking-tight mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-[14px] sm:text-[16px] leading-[1.6] text-slate-500 font-light max-w-md">
+                      {step.description}
+                    </p>
+                    
+                    {step.hasApplyLink && (
+                      <Link 
+                        href="/portal" 
+                        className="inline-flex items-center gap-1.5 mt-3 text-[#2563EB] font-semibold text-sm group/link w-fit"
+                      >
+                        <span>Apply Now</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                       </Link>
                     )}
                   </div>

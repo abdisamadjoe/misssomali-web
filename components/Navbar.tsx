@@ -142,13 +142,15 @@ export default function Navbar() {
         }`}
       >
         {/* Stacked Links Center */}
-        <div className="flex flex-col items-center justify-center flex-1 space-y-6">
+        <div className="flex flex-col items-center justify-center flex-1 space-y-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => handleLinkClick(link.name)}
-              className={`text-[14px] font-medium tracking-[0.02em] leading-none ${activeLink === link.name ? "text-[#E8C97A]" : "text-white/80 hover:text-white"}`}
+              className={`text-[20px] font-semibold tracking-[0.04em] transition-colors duration-200 ${
+                activeLink === link.name ? "text-[#E8C97A]" : "text-[#F5F0E8]/85 hover:text-[#E8C97A]"
+              }`}
             >
               {link.name}
             </a>
