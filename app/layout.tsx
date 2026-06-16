@@ -6,6 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Miss Somali 2026 | Beauty, Culture, and Leadership",
   description: "An international pageant celebrating Somali beauty, culture, and leadership on a global stage.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 import { Providers } from "@/components/providers";
