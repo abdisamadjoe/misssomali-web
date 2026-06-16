@@ -301,87 +301,159 @@ export default function ApplicationsPage() {
             <p className="text-dark-6">No applications found.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-stroke dark:border-dark-3">
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">App #</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Full Name</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Country</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Status</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Submitted</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Updated</th>
-                  <th className="px-6 py-4 text-right font-medium text-dark-6">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {applications.map((app) => (
-                  <tr
-                    key={app.id}
-                    className="border-b border-stroke last:border-0 hover:bg-gray-1 dark:border-dark-3 dark:hover:bg-dark-2"
-                  >
-                    <td className="px-6 py-4 font-mono text-xs text-dark-6">
-                      {app.applicationNumber || "—"}
-                    </td>
-                    <td className="px-6 py-4">
+          <>
+            {/* Desktop View: Table (visible md and up) */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-stroke dark:border-dark-3">
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">App #</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Full Name</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Country</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Status</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Submitted</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Updated</th>
+                    <th className="px-6 py-4 text-right font-medium text-dark-6">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {applications.map((app) => (
+                    <tr
+                      key={app.id}
+                      className="border-b border-stroke last:border-0 hover:bg-gray-1 dark:border-dark-3 dark:hover:bg-dark-2"
+                    >
+                      <td className="px-6 py-4 font-mono text-xs text-dark-6">
+                        {app.applicationNumber || "—"}
+                      </td>
+                      <td className="px-6 py-4">
+                        <Link
+                          href={`/admin/applications/${app.id}`}
+                          className="font-medium text-dark hover:text-primary dark:text-white"
+                        >
+                          {app.user?.fullName || app.fullName || "—"}
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4 text-dark-6">{app.country || "—"}</td>
+                      <td className="px-6 py-4">
+                        <StatusBadge status={app.status} />
+                      </td>
+                      <td className="px-6 py-4 text-dark-6">{formatDate(app.appliedAt)}</td>
+                      <td className="px-6 py-4 text-dark-6">{formatDate(app.updatedAt)}</td>
+                      <td className="px-6 py-4 text-right">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-8 w-8" disabled={actionLoading === app.id}>
+                              {actionLoading === app.id ? (
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                              ) : (
+                                <MoreHorizontal className="h-4 w-4" />
+                              )}
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => router.push(`/admin/applications/${app.id}`)}>
+                              <Eye className="mr-2 h-4 w-4" />
+                              View Details
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                              onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Shortlist", "shortlisted")}
+                            >
+                              <Star className="mr-2 h-4 w-4" />
+                              Shortlist
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Approve", "approved")}
+                            >
+                              <CheckCircle2 className="mr-2 h-4 w-4" />
+                              Approve
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                              className="text-red-600 focus:text-red-600"
+                              onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Reject", "rejected")}
+                            >
+                              <XCircle className="mr-2 h-4 w-4" />
+                              Reject
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile View: Cards list (visible below md) */}
+            <div className="block md:hidden divide-y divide-stroke dark:divide-dark-3 px-4">
+              {applications.map((app) => (
+                <div key={app.id} className="py-4 flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs text-dark-5">
+                      {app.applicationNumber || "Pending"}
+                    </span>
+                    <StatusBadge status={app.status} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
                       <Link
                         href={`/admin/applications/${app.id}`}
-                        className="font-medium text-dark hover:text-primary dark:text-white"
+                        className="font-semibold text-dark hover:text-primary dark:text-white"
                       >
                         {app.user?.fullName || app.fullName || "—"}
                       </Link>
-                    </td>
-                    <td className="px-6 py-4 text-dark-6">{app.country || "—"}</td>
-                    <td className="px-6 py-4">
-                      <StatusBadge status={app.status} />
-                    </td>
-                    <td className="px-6 py-4 text-dark-6">{formatDate(app.appliedAt)}</td>
-                    <td className="px-6 py-4 text-dark-6">{formatDate(app.updatedAt)}</td>
-                    <td className="px-6 py-4 text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8" disabled={actionLoading === app.id}>
-                            {actionLoading === app.id ? (
-                              <Loader2 className="h-4 w-4 animate-spin" />
-                            ) : (
-                              <MoreHorizontal className="h-4 w-4" />
-                            )}
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem onClick={() => router.push(`/admin/applications/${app.id}`)}>
-                            <Eye className="mr-2 h-4 w-4" />
-                            View Details
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem
-                            onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Shortlist", "shortlisted")}
-                          >
-                            <Star className="mr-2 h-4 w-4" />
-                            Shortlist
-                          </DropdownMenuItem>
-                          <DropdownMenuItem
-                            onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Approve", "approved")}
-                          >
-                            <CheckCircle2 className="mr-2 h-4 w-4" />
-                            Approve
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem
-                            className="text-red-600 focus:text-red-600"
-                            onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Reject", "rejected")}
-                          >
-                            <XCircle className="mr-2 h-4 w-4" />
-                            Reject
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                      <p className="text-xs text-dark-6 mt-0.5">{app.country || "—"}</p>
+                    </div>
+                    
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" disabled={actionLoading === app.id}>
+                          {actionLoading === app.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <MoreHorizontal className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => router.push(`/admin/applications/${app.id}`)}>
+                          <Eye className="mr-2 h-4 w-4" />
+                          View Details
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Shortlist", "shortlisted")}
+                        >
+                          <Star className="mr-2 h-4 w-4" />
+                          Shortlist
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Approve", "approved")}
+                        >
+                          <CheckCircle2 className="mr-2 h-4 w-4" />
+                          Approve
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          className="text-red-600 focus:text-red-600"
+                          onClick={() => openConfirmDialog(app.id, app.user?.fullName || "Applicant", "Reject", "rejected")}
+                        >
+                          <XCircle className="mr-2 h-4 w-4" />
+                          Reject
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  
+                  <div className="flex justify-between text-[11px] text-dark-6">
+                    <span>Submitted: {formatDate(app.appliedAt)}</span>
+                    <span>Updated: {formatDate(app.updatedAt)}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         )}
 
         {/* Pagination */}

@@ -115,7 +115,7 @@ export default function AdminDashboard() {
         {statCards.map((card) => (
           <div
             key={card.label}
-            className="rounded-[10px] bg-white p-6 shadow-1 dark:bg-gray-dark"
+            className="rounded-[10px] bg-white p-4 sm:p-6 shadow-1 dark:bg-gray-dark"
           >
             <div className={`flex h-12 w-12 items-center justify-center rounded-full ${card.bg}`}>
               <card.icon className={`h-6 w-6 ${card.color}`} />
@@ -134,7 +134,7 @@ export default function AdminDashboard() {
       <div className="mt-6 grid grid-cols-12 gap-4 md:gap-6">
         {/* Recent Submissions */}
         <div className="col-span-12 xl:col-span-8">
-          <div className="rounded-[10px] bg-white p-6 shadow-1 dark:bg-gray-dark">
+          <div className="rounded-[10px] bg-white p-4 sm:p-6 shadow-1 dark:bg-gray-dark">
             <div className="mb-6 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-dark dark:text-white">
                 Recent Submissions
@@ -150,44 +150,71 @@ export default function AdminDashboard() {
             {recentApplications.length === 0 ? (
               <p className="py-8 text-center text-dark-6">No submissions yet.</p>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-stroke dark:border-dark-3">
-                      <th className="pb-3 text-left font-medium text-dark-6">Name</th>
-                      <th className="pb-3 text-left font-medium text-dark-6">Country</th>
-                      <th className="pb-3 text-left font-medium text-dark-6">Status</th>
-                      <th className="pb-3 text-left font-medium text-dark-6">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recentApplications.map((app) => (
-                      <tr
-                        key={app.id}
-                        className="border-b border-stroke last:border-0 dark:border-dark-3"
-                      >
-                        <td className="py-3 font-medium text-dark dark:text-white">
-                          <Link href={`/admin/applications/${app.id}`} className="hover:text-primary">
-                            {app.user?.fullName || app.fullName || "—"}
-                          </Link>
-                        </td>
-                        <td className="py-3 text-dark-6">{app.country || "—"}</td>
-                        <td className="py-3">
-                          <StatusBadge status={app.status} />
-                        </td>
-                        <td className="py-3 text-dark-6">{formatDate(app.updatedAt)}</td>
+              <>
+                {/* Desktop View: Table (visible md and up) */}
+                <div className="hidden md:block overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-stroke dark:border-dark-3">
+                        <th className="pb-3 text-left font-medium text-dark-6">Name</th>
+                        <th className="pb-3 text-left font-medium text-dark-6">Country</th>
+                        <th className="pb-3 text-left font-medium text-dark-6">Status</th>
+                        <th className="pb-3 text-left font-medium text-dark-6">Date</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {recentApplications.map((app) => (
+                        <tr
+                          key={app.id}
+                          className="border-b border-stroke last:border-0 dark:border-dark-3"
+                        >
+                          <td className="py-3 font-medium text-dark dark:text-white">
+                            <Link href={`/admin/applications/${app.id}`} className="hover:text-primary">
+                              {app.user?.fullName || app.fullName || "—"}
+                            </Link>
+                          </td>
+                          <td className="py-3 text-dark-6">{app.country || "—"}</td>
+                          <td className="py-3">
+                            <StatusBadge status={app.status} />
+                          </td>
+                          <td className="py-3 text-dark-6">{formatDate(app.updatedAt)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile View: List (visible below md) */}
+                <div className="block md:hidden space-y-4">
+                  {recentApplications.map((app) => (
+                    <div
+                      key={app.id}
+                      className="border-b border-stroke pb-4 last:border-0 last:pb-0 dark:border-dark-3 flex flex-col gap-2"
+                    >
+                      <div className="flex items-center justify-between">
+                        <Link
+                          href={`/admin/applications/${app.id}`}
+                          className="font-semibold text-dark hover:text-primary dark:text-white"
+                        >
+                          {app.user?.fullName || app.fullName || "—"}
+                        </Link>
+                        <StatusBadge status={app.status} />
+                      </div>
+                      <div className="flex justify-between text-xs text-dark-6">
+                        <span>{app.country || "—"}</span>
+                        <span>{formatDate(app.updatedAt)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
         </div>
 
         {/* Quick Actions */}
         <div className="col-span-12 xl:col-span-4">
-          <div className="rounded-[10px] bg-white p-6 shadow-1 dark:bg-gray-dark">
+          <div className="rounded-[10px] bg-white p-4 sm:p-6 shadow-1 dark:bg-gray-dark">
             <h3 className="mb-6 text-lg font-semibold text-dark dark:text-white">
               Quick Actions
             </h3>

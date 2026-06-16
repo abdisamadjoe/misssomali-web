@@ -153,80 +153,143 @@ export default function ContestantsPage() {
             <p className="text-dark-6">No active contestants found.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-stroke dark:border-dark-3">
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Contestant</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">App #</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Country</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Status</th>
-                  <th className="px-6 py-4 text-left font-medium text-dark-6">Approved Date</th>
-                  <th className="px-6 py-4 text-right font-medium text-dark-6">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredContestants.map((con) => {
-                  const profilePhoto = con.user?.photos?.find((p) => p.type === "profile")?.url;
-                  const displayName = con.fullName || con.user?.fullName || "—";
-                  return (
-                    <tr
-                      key={con.id}
-                      className="border-b border-stroke last:border-0 hover:bg-gray-1 dark:border-dark-3 dark:hover:bg-dark-2"
-                    >
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          {profilePhoto ? (
-                            <div className="relative h-10 w-10 overflow-hidden rounded-full border border-stroke dark:border-dark-3">
-                              <Image
-                                src={profilePhoto}
-                                alt={displayName}
-                                fill
-                                sizes="40px"
-                                className="object-cover"
-                              />
+          <>
+            {/* Desktop View: Table (visible md and up) */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-stroke dark:border-dark-3">
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Contestant</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">App #</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Country</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Status</th>
+                    <th className="px-6 py-4 text-left font-medium text-dark-6">Approved Date</th>
+                    <th className="px-6 py-4 text-right font-medium text-dark-6">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredContestants.map((con) => {
+                    const profilePhoto = con.user?.photos?.find((p) => p.type === "profile")?.url;
+                    const displayName = con.fullName || con.user?.fullName || "—";
+                    return (
+                      <tr
+                        key={con.id}
+                        className="border-b border-stroke last:border-0 hover:bg-gray-1 dark:border-dark-3 dark:hover:bg-dark-2"
+                      >
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-3">
+                            {profilePhoto ? (
+                              <div className="relative h-10 w-10 overflow-hidden rounded-full border border-stroke dark:border-dark-3">
+                                <Image
+                                  src={profilePhoto}
+                                  alt={displayName}
+                                  fill
+                                  sizes="40px"
+                                  className="object-cover"
+                                />
+                              </div>
+                            ) : (
+                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-stroke text-dark-6 dark:bg-dark-3">
+                                <User className="h-5 w-5" />
+                              </div>
+                            )}
+                            <div>
+                              <p className="font-semibold text-dark dark:text-white">
+                                {displayName}
+                              </p>
+                              <p className="text-xs text-dark-6">
+                                {con.user?.phone || con.phone || "—"}
+                              </p>
                             </div>
-                          ) : (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-stroke text-dark-6 dark:bg-dark-3">
-                              <User className="h-5 w-5" />
-                            </div>
-                          )}
-                          <div>
-                            <p className="font-semibold text-dark dark:text-white">
-                              {displayName}
-                            </p>
-                            <p className="text-xs text-dark-6">
-                              {con.user?.phone || con.phone || "—"}
-                            </p>
                           </div>
+                        </td>
+                        <td className="px-6 py-4 font-mono text-xs text-dark-6">
+                          {con.applicationNumber || "—"}
+                        </td>
+                        <td className="px-6 py-4 text-dark-6">
+                          {con.country || con.user?.country || "—"}
+                        </td>
+                        <td className="px-6 py-4">
+                          <StatusBadge status={con.status} />
+                        </td>
+                        <td className="px-6 py-4 text-dark-6">
+                          {formatDate(con.updatedAt)}
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <Link href={`/admin/applications/${con.id}`} passHref>
+                            <Button variant="outline" size="sm" className="inline-flex items-center gap-1">
+                              <Eye className="h-4 w-4" />
+                              View Application
+                            </Button>
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile View: Cards list (visible below md) */}
+            <div className="block md:hidden divide-y divide-stroke dark:divide-dark-3 px-4">
+              {filteredContestants.map((con) => {
+                const profilePhoto = con.user?.photos?.find((p) => p.type === "profile")?.url;
+                const displayName = con.fullName || con.user?.fullName || "—";
+                return (
+                  <div key={con.id} className="py-4 flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {profilePhoto ? (
+                          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-stroke dark:border-dark-3">
+                            <Image
+                              src={profilePhoto}
+                              alt={displayName}
+                              fill
+                              sizes="40px"
+                              className="object-cover"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-stroke text-dark-6 dark:bg-dark-3">
+                            <User className="h-5 w-5" />
+                          </div>
+                        )}
+                        <div>
+                          <p className="font-semibold text-dark dark:text-white text-sm">
+                            {displayName}
+                          </p>
+                          <p className="text-xs text-dark-6">
+                            {con.user?.phone || con.phone || "—"}
+                          </p>
                         </div>
-                      </td>
-                      <td className="px-6 py-4 font-mono text-xs text-dark-6">
-                        {con.applicationNumber || "—"}
-                      </td>
-                      <td className="px-6 py-4 text-dark-6">
-                        {con.country || con.user?.country || "—"}
-                      </td>
-                      <td className="px-6 py-4">
-                        <StatusBadge status={con.status} />
-                      </td>
-                      <td className="px-6 py-4 text-dark-6">
-                        {formatDate(con.updatedAt)}
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <Link href={`/admin/applications/${con.id}`} passHref>
-                          <Button variant="outline" size="sm" className="inline-flex items-center gap-1">
-                            <Eye className="h-4 w-4" />
-                            View Application
-                          </Button>
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+                      </div>
+                      <StatusBadge status={con.status} />
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs text-dark-6">
+                      <div>
+                        <span className="block">App #: <span className="font-mono text-dark dark:text-white">{con.applicationNumber || "—"}</span></span>
+                        <span className="block mt-0.5">Country: <span className="text-dark dark:text-white">{con.country || con.user?.country || "—"}</span></span>
+                      </div>
+                      <div className="text-right">
+                        <span className="block">Approved Date</span>
+                        <span className="block font-medium mt-0.5 text-dark dark:text-white">{formatDate(con.updatedAt)}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-end pt-1">
+                      <Link href={`/admin/applications/${con.id}`} passHref className="w-full">
+                        <Button variant="outline" size="sm" className="w-full inline-flex items-center justify-center gap-1">
+                          <Eye className="h-4 w-4" />
+                          View Application
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
     </>
