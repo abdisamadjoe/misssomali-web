@@ -144,9 +144,22 @@ export default function Footer({ className }: FooterProps) {
         {/* Bottom copyright row */}
         <div className="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] text-[#F5F0E8]/50">
           <span>&copy; {new Date().getFullYear()} Miss Somali Pageant Organization. All Rights Reserved.</span>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <Link href="/privacy" className="hover:text-[#E8C97A] transition-colors">Privacy Policy</Link>
+            <span className="w-1 h-1 rounded-full bg-white/10 hidden md:inline-block" />
             <Link href="/terms" className="hover:text-[#E8C97A] transition-colors">Terms of Service</Link>
+            <span className="w-1 h-1 rounded-full bg-white/10 hidden md:inline-block" />
+            <span className="flex items-center gap-1">
+              Built with <i className="fa-solid fa-heart" style={{ color: "rgb(255, 0, 0)" }}></i> by{" "}
+              <a
+                href="https://groundwork.co.ke/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#E8C97A] text-[#F5F0E8]/70 underline decoration-white/20 transition-all font-medium"
+              >
+                Groundwork Technologies
+              </a>
+            </span>
           </div>
         </div>
 
